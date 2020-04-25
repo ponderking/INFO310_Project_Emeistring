@@ -19,18 +19,14 @@
 
     console.log("hello outside loop")
     d3.json("data/patient_data.json", function(data) {
+
         amount_of_modules = data.modules.length
-        data = data.modules
-        for (var i = 0; i < data.length; i++) {
-            console.log(data[i].patients[0].madris_score);
-            var madris_score = data[i].patients[0].madris_score
-            d3.select('body').append('p').text("madris_score patient 1 (test):" + madris_score);
-           }
+
 
     // progress-bar code:
     // code currently from: http://bl.ocks.org/vkuchinov/c43323186765cb14ddd292e71790f0ec
 
-        var colors = { green: '#4DC87F', lightGreen: '#D9F0E3' };
+        var colors = { green: '#4DC87F', lightGreen: '#D9F0E3', white: '#FFFFFF', black: '#000000'};
         var width = 960, height = 480, offset = 48;
 
         width += offset * 2;
@@ -56,7 +52,7 @@
             .style('pointer-events', 'none');
 
         var progressBackground = progressBar.append('rect')
-            .attr('fill', colors.LightGreen)
+            .attr('fill', colors.lightGreen)
             .attr('height', 8)
             .attr('width', width - offset * 2)
             .attr('rx', 4)
@@ -83,10 +79,14 @@
             .attr('id', function(d, i){ return 'step_' + i; })
             .attr('cx', function(d, i){ return i * stepWidth; })
             .attr('cy', 4)
-            .attr('r', 20)
+            .attr('r', 30)
             .attr('fill', '#FFFFFF')
             .attr('stroke', colors.lightGreen)
             .attr('stroke-width', 6)
+            .on("click", function(){
+                console.log("YO")
+                d3.select(this).style("stroke", colors.black);
+            });
 
 
         progressBar.selectAll('text')
@@ -143,6 +143,12 @@
         //
         // }
 
+        data = data.modules
+        for (var i = 0; i < data.length; i++) {
+            console.log(data[i].patients[0].madris_score);
+            var madris_score = data[i].patients[0].madris_score
+            d3.select('body').append('p').text("madris_score patient 1 (test):" + madris_score);
+        }
     // end of d3.json() callback
     });
 

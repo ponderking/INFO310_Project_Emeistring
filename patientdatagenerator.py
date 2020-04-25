@@ -9,13 +9,22 @@ tasks_categories = ["Family_or_Friends", "Health", "Free_Time", "Work_or_Study"]
 tasks = ["Fishing", "Gardening", "Indoor Games", "Job",
          "Outdoor Games", "Reading", "Shopping", "Sleeping", "Tour", "Exercise", "Writing"]
 
-
 json_data = {}
 json_data['modules'] = []
 
 i = 1
 j = 1
 while i <= modules_amount:
+    module_data = {}
+    module_data["module_id"] = str(i)
+    module_data["date_started"] = "1-" + str(i+1) + "-2020"
+    module_data["status"] = str(True)
+    module_data["date_finished"] = str(i+3) + "-" + str(i+1) + "-2020"
+
+    if i > 10:
+        module_data["status"] = str(False)
+        module_data["date_finished"] = "N/A"
+
     patients = []
     j = 1
     while j <= patients_amount:
@@ -39,14 +48,14 @@ while i <= modules_amount:
             })
         j += 1
 
-    json_data['modules'].append(
-        {
-            "module_" + str(i): {"patients": patients},
-        }
+    json_data['modules'].append([
+            {"patients": patients},
+            {"module_data": module_data}
+    ]
     )
     i += 1
 
-pprint.pprint(json_data)
+pprint.pprint(json_data['modules'])
 
 with open('data/patient_data.json', 'w') as outfile:
     json.dump(json_data, outfile)
