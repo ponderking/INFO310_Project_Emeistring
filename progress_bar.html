@@ -20,7 +20,8 @@
     console.log("hello outside loop")
     d3.json("data/patient_data.json", function(data) {
 
-        amount_of_modules = data.modules.length
+        var amount_of_modules = data.modules.length
+        console.log(amount_of_modules)
 
 
     // progress-bar code:
