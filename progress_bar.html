@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"> <head>
     <meta charset="utf-8">
-    <title>eMeistring Dashboard Demonstration</title>
+    <title>eMeistring - Progress Bar for Individual Patients</title>
     <script type="text/javascript" src="d3/d3.min.js"></script>
-<!--    <link rel="stylesheet" href="css/dashboard.css"> -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!--    <link rel="stylesheet" href="css/dashboard.css"> -->
 </head>
 <body>
-<!DOCTYPE html>
-<meta charset='utf-8'>
-
-</body>
-
-<script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
 
@@ -85,7 +80,7 @@
             .attr('stroke', colors.lightGreen)
             .attr('stroke-width', 6)
             .on("click", function(){
-                console.log("YO")
+                console.log("Click Worked!")
                 d3.select(this).style("stroke", colors.black);
             });
 
@@ -143,11 +138,10 @@
         //     }
         //
         // }
-
         data = data.modules
         for (var i = 0; i < data.length; i++) {
-            console.log(data[i].patients[0].madris_score);
-            var madris_score = data[i].patients[0].madris_score
+            console.log(data[i].patient_data[0].madris_score);
+            var madris_score = data[i].patient_data[0].madris_score
             d3.select('body').append('p').text("madris_score patient 1 (test):" + madris_score);
         }
     // end of d3.json() callback
@@ -155,12 +149,8 @@
 
 </script>
 </body>
-
 </html>
 
 
-
-</body>
-</html>
 
 
