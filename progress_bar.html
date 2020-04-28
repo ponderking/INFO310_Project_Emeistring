@@ -12,19 +12,40 @@
 
 // I start handling our patient data here:
 
-    console.log("hello outside loop")
     d3.json("data/patient_data.json", function(data) {
+        data = data.modules
 
-        var amount_of_modules = data.modules.length
-        console.log(amount_of_modules)
+        // temp patient_data for patient_1
+        patient_data = []
+        for (var i = 0; i < data.length; i++) {
+            // console.log(data[i].patient_data[0].madris_score);
+            patient_data.push(data[i].patient_data[1])
+            // d3.select('body').append('p').text("madris_score patient 1 (test):" + madris_score);
+        }
+
+
+        var amount_of_modules = 14;
+        var amount_of_patients = data[0].patient_data.length;
+        var moduleIDs = [];
+        for (var i = 1; i <= amount_of_modules+1; i++) {
+            moduleIDs.push(i);
+        }
+        // progress_data = {"moduleIDs": moduleIDs, patient_data: patient_data}
+
+
+
+        // temp patient_data
 
 
     // progress-bar code:
-    // code currently from: http://bl.ocks.org/vkuchinov/c43323186765cb14ddd292e71790f0ec
+    // code currently based on: http://bl.ocks.org/vkuchinov/c43323186765cb14ddd292e71790f0ec
 
-        var colors = { green: '#4DC87F', lightGreen: '#D9F0E3', white: '#FFFFFF', black: '#000000'};
+        var colors = { green: '#4DC87F', lightGreen: '#D9F0E3', darkGreen: '#3B5C0A', blue: '#0808EC', white: '#FFFFFF', black: '#000000'};
+        var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: '#547A1D', very_high: '#3B5C0A'}
+
+        // var warning_colors = {0-6': '', '7-11': '', '12-22': '', '23-29': '', '30-34': '', '35-60': ''}
+
         var width = 960, height = 480, offset = 48;
-
         width += offset * 2;
         height += offset * 2;
         var dimensions = '' + 0 + ' ' + 0 + ' ' + width + ' ' + height;
@@ -35,24 +56,23 @@
             .attr('viewBox', dimensions)
             .classed('svg-content', true);
 
-        // var steps = ['0', '1', '2', '3', '4', '5'];
-        var steps = [];
-        for (var i = 1; i <= amount_of_modules; i++) {
-            steps.push(i);
-        }
-        stepWidth = (width - offset * 2) / (steps.length - 1),
+
+
+        stepWidth = (width - offset * 2) / (moduleIDs.length - 1),
             currentStep = '0';
 
         var progressBar = svg.append('g')
             .attr('transform', 'translate(' + offset + ',' + offset + ')')
-            .style('pointer-events', 'none');
+            .style('pointer-events', 'visible');
+
 
         var progressBackground = progressBar.append('rect')
-            .attr('fill', colors.lightGreen)
+            .attr('fill', colors.black)
             .attr('height', 8)
             .attr('width', width - offset * 2)
             .attr('rx', 4)
             .attr('ry', 4);
+
 
         // var progress = progressBar.append('rect')
         //     .attr('fill', colors.green)
@@ -60,47 +80,130 @@
         //     .attr('width', 0)
         //     .attr('rx', 4)
         //     .attr('ry', 4);
-        //
+
         // progress.transition()
         //     .duration(1000)
         //     .attr('width', function(){
-        //         var index = steps.indexOf(currentStep);
+        //         var index = moduleIDs.indexOf(currentStep);
         //         return (index + 1) * stepWidth;
         //     });
-
         progressBar.selectAll('circle')
-            .data(steps)
+            .data(moduleIDs)
             .enter()
             .append('circle')
-            .attr('id', function(d, i){ return 'step_' + i; })
+            .attr('id', function(d, i){ return 'module_' + i; })
             .attr('cx', function(d, i){ return i * stepWidth; })
             .attr('cy', 4)
-            .attr('r', 30)
+            .attr('r', function(i) {
+                if(i===amount_of_modules+1) {
+                    return 35;
+                }
+                else {
+                        return 20;
+                }})
             .attr('fill', '#FFFFFF')
-            .attr('stroke', colors.lightGreen)
+            .attr('stroke', function(d) {
+                if(d >= amount_of_modules) {
+                    return colors.black
+                }
+                else {
+                    madris_score = patient_data[d-1].madris_score
+                    var color_type = calculate_warning_color(madris_score);
+                    return warning_colors[color_type];
+                }
+            })
             .attr('stroke-width', 6)
-            .on("click", function(){
-                console.log("Click Worked!")
-                d3.select(this).style("stroke", colors.black);
+            .on("click", function(d){
+                if (d > amount_of_modules) {
+                    display_aggregate_information(d)
+                }
+                else {
+                    display_module_information(d)
+                }
             });
 
 
         progressBar.selectAll('text')
-            .data(steps)
+            .data(moduleIDs)
             .enter()
             .append('text')
             .attr('id', function(d, i){ return 'label_' + i; })
             .attr('dx', function(d, i){ return i * stepWidth; })
             .attr('dy', 10)
             .attr('text-anchor', 'middle')
-            .text(function(d, i) { return i + 1; })
+            .text(function(d, i) {
+                if (i >= amount_of_modules) {
+                    return "All";
+                } else
+                    {
+                        return i + 1;
+                    }})
+            .on("click", function(d){
+                display_module_information(d)
+            });
 
-        
+
+        // This function will display visualizations of an individual module for the patient.
+        // It will display when you click on any of the module circles at the top of the page.
+
+        function display_module_information(d) {
+
+            // var svg = d3.select('body').append('svg')
+            //     .attr('id', 'module_visualization' + d, true)
+            //     .attr('preserveAspectRatio', 'xMinYMin meet')
+            //     .attr('viewBox', dimensions)
+            //     .classed('svg-content', true);
+            //
+            //
+            // d = d-1
+            // if(d >=amount_of_modules) {
+            //     return null;
+            // }
+
+            // for (var i = 0; i <= amount_of_modules; i++) {
+            //     console.log("module_" + i)
+            //     d3.select('module_' + i).attr("stroke", colors.blue);
+            //
+            // }
+            // d3.select('module_1').attr("stroke", colors.blue).data(moduleIDs);
+            d3.select('body').append('p').text('Patient Name: ' + patient_data[d].name);
+            d3.select('body').append('p').text('Madris Score: ' + patient_data[d].madris_score);
+            d3.select('body').append('p').text('Activity: ' + patient_data[d].activity);
+            d3.select('body').append('p').text('Completed: ' + patient_data[d].completion);
+            d3.select('body').append('p').text('Madris Score: ' + patient_data[d].madris_score);
+
+        }
+
+        // This function will display visualizations of an aggregate module data for the patient.
+        // It will display when you click the top right circle labeled "All".
+
+        function display_aggregate_information(d) {
+            console.log("Not Implemented Yet.")
+
+        }
+
+        function calculate_warning_color(score) {
+            switch (true) {
+                case score >= 0 && score <= 6:
+                    return "low";
+                case score >= 7 && score <= 11:
+                    return "low_middle";
+                case score >= 12 && score <= 22:
+                    return "middle";
+                case score >= 23 && score <= 29:
+                    return "middle_high";
+                case score >= 30 && score <= 34:
+                    return "high";
+                case score >= 35 && score <= 60:
+                    return "very_high";
+            }
+        }
+
 
         // updateProgressBar("0");
 
         // //self-running demo
-        // setInterval(function() { updateProgressBar(Math.floor(Math.random() * (steps.length - 1)).toString()); } , 2500)
+        // setInterval(function() { updateProgressBar(Math.floor(Math.random() * (moduleIDs.length - 1)).toString()); } , 2500)
         //
         // function setupProgressBar(data_){
         //
@@ -116,13 +219,13 @@
         //         .duration(1000)
         //         .attr('fill', colors.green)
         //         .attr('width', function(){
-        //             var index = steps.indexOf(step_);
+        //             var index = moduleIDs.indexOf(step_);
         //             return (index) * stepWidth;
         //         });
         //
-        //     for(var i = 0; i < steps.length; i++){
+        //     for(var i = 0; i < moduleIDs.length; i++){
         //
-        //         if(i <= steps.indexOf(step_)) {
+        //         if(i <= moduleIDs.indexOf(step_)) {
         //
         //             d3.select('#step_' + i).attr('fill', colors.green).attr('stroke', colors.green);
         //             d3.select('#label_' + i).attr('fill', '#FFFFFF');
@@ -138,12 +241,8 @@
         //     }
         //
         // }
-        data = data.modules
-        for (var i = 0; i < data.length; i++) {
-            console.log(data[i].patient_data[0].madris_score);
-            var madris_score = data[i].patient_data[0].madris_score
-            d3.select('body').append('p').text("madris_score patient 1 (test):" + madris_score);
-        }
+
+
     // end of d3.json() callback
     });
 
