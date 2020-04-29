@@ -13,9 +13,9 @@
 // I start handling our patient data here:
 
     d3.json("data/patient_data.json", function(data) {
-        data = data.modules
 
         // temp patient_data for patient_1
+        data = data.modules
         patient_data = []
         for (var i = 0; i < data.length; i++) {
             // console.log(data[i].patient_data[0].madris_score);
@@ -24,7 +24,7 @@
         }
 
 
-        var amount_of_modules = 14;
+        var amount_of_modules = data.length;
         var amount_of_patients = data[0].patient_data.length;
         var moduleIDs = [];
         for (var i = 1; i <= amount_of_modules+1; i++) {
