@@ -12,4 +12,6 @@ python -m SimpleHTTPServer 8000 (for python 2) OR python -m http.server 8000 (fo
 
 3. Start with opening the Circular_Visulization.html page, as it is the main hub for the other visualizations.
 
+4. Clicking on an Individual patient will lead to a progress bar that...
 
+5.
