@@ -1,6 +1,7 @@
 {
    "treatment_program":{
       "therapist_name":"Eva Stratton",
+      "therapist_email":"Eva_Stratton@examplemail.com",
       "therapist_id":"9282",
       "treatment_type":"Panic Disorder",
       "amount_of_modules":14,
