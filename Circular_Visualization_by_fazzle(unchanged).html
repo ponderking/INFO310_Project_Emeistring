@@ -205,6 +205,20 @@ var pdata=[ "Ingvild Emilia.    Progress:       Week 10.   Module 4.      Messag
     var progData = [4, 6, 1, 2.5, 0, 5, 4.5, 4.5, 5, 5.5, 3.5, 0];         // number of modules completed
     var inrcData = [6, 11.5, 6.5, 3.5, 1.0, 5, 8, 8, 8.0, 8, 3.0, 0];  // Interaction data...
 
+// OUR CODE STARTS HERE:
+// Here we use our own patient data from our model.
+
+    d3.json("data/patient_data.json", function(data) {
+
+        // temporary solution
+        data = data.modules
+        var amount_of_modules = data.length;
+        var amount_of_patients = data[0].patient_data.length;
+
+
+
+
+
 
 
     /*
@@ -457,6 +471,8 @@ var pdata=[ "Ingvild Emilia.    Progress:       Week 10.   Module 4.      Messag
 
 
 
+        // end of d3.json() callback
+    });
 </script>
 
 
