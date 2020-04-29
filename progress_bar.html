@@ -12,19 +12,19 @@
 
 // I start handling our patient data here:
 
-    d3.json("data/patient_data.json", function(data) {
+    d3.json("http://localhost:8000/data/patient_data.json", function(data) {
+        patient_id = window.localStorage.getItem('patient_id')
 
-        // temp patient_data for patient_1
+        // temporary solution
+        var amount_of_modules = data.treatment_program.amount_of_modules
         data = data.modules
         patient_data = []
-        for (var i = 0; i < data.length; i++) {
+
+        for (var i = 0; i < amount_of_modules; i++) {
             // console.log(data[i].patient_data[0].madris_score);
-            patient_data.push(data[i].patient_data[1])
+            patient_data.push(data[i].patient_data[patient_id])
             // d3.select('body').append('p').text("madris_score patient 1 (test):" + madris_score);
         }
-
-
-        var amount_of_modules = data.length;
         var amount_of_patients = data[0].patient_data.length;
         var moduleIDs = [];
         for (var i = 1; i <= amount_of_modules+1; i++) {
@@ -41,7 +41,7 @@
     // code currently based on: http://bl.ocks.org/vkuchinov/c43323186765cb14ddd292e71790f0ec
 
         var colors = { green: '#4DC87F', lightGreen: '#D9F0E3', darkGreen: '#3B5C0A', blue: '#0808EC', white: '#FFFFFF', black: '#000000'};
-        var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: '#547A1D', very_high: '#3B5C0A'}
+        var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: '#547A1D', very_high: '#3B5C0A', undetermined: '#7F8389'}
 
         // var warning_colors = {0-6': '', '7-11': '', '12-22': '', '23-29': '', '30-34': '', '35-60': ''}
 
@@ -87,6 +87,7 @@
         //         var index = moduleIDs.indexOf(currentStep);
         //         return (index + 1) * stepWidth;
         //     });
+
         progressBar.selectAll('circle')
             .data(moduleIDs)
             .enter()
@@ -103,12 +104,12 @@
                 }})
             .attr('fill', '#FFFFFF')
             .attr('stroke', function(d) {
-                if(d >= amount_of_modules) {
+                if(d > amount_of_modules) {
                     return colors.black
                 }
                 else {
-                    madris_score = patient_data[d-1].madris_score
-                    var color_type = calculate_warning_color(madris_score);
+                    madrs_score = patient_data[d-1].madris_score
+                    var color_type = calculate_warning_color(madrs_score);
                     return warning_colors[color_type];
                 }
             })
@@ -139,7 +140,7 @@
                         return i + 1;
                     }})
             .on("click", function(d){
-                display_module_information(d)
+                display_module_information(d+1)
             });
 
 
@@ -166,11 +167,10 @@
             //
             // }
             // d3.select('module_1').attr("stroke", colors.blue).data(moduleIDs);
-            d3.select('body').append('p').text('Patient Name: ' + patient_data[d].name);
-            d3.select('body').append('p').text('Madris Score: ' + patient_data[d].madris_score);
+            d3.select('body').append('p').text('Patient Name: ' + patient_data[d].patient_name);
+            d3.select('body').append('p').text('Madrs Score: ' + patient_data[d].madris_score);
             d3.select('body').append('p').text('Activity: ' + patient_data[d].activity);
-            d3.select('body').append('p').text('Completed: ' + patient_data[d].completion);
-            d3.select('body').append('p').text('Madris Score: ' + patient_data[d].madris_score);
+            d3.select('body').append('p').text('Completed: ' + patient_data[d].module_completion);
 
         }
 
@@ -196,12 +196,14 @@
                     return "high";
                 case score >= 35 && score <= 60:
                     return "very_high";
+                case score === "N/A":
+                    return "undetermined";
             }
         }
 
-
+        //
         // updateProgressBar("0");
-
+        //
         // //self-running demo
         // setInterval(function() { updateProgressBar(Math.floor(Math.random() * (moduleIDs.length - 1)).toString()); } , 2500)
         //
@@ -212,7 +214,7 @@
         //     return output;
         //
         // }
-
+        //
         // function updateProgressBar(step_){
         //
         //     progress.transition()

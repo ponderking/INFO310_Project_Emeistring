@@ -5,6 +5,7 @@
       "treatment_type":"Panic Disorder",
       "amount_of_modules":14,
       "amount_of_weeks":14,
+      "amount_of_patients":15,
       "current_week":10
    },
    "modules":[
@@ -38,7 +39,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":16,
+               "madrs_score":16,
                "last_online":"1-2-2020",
                "minutes_spent_online":"105"
             },
@@ -62,7 +63,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":41,
+               "madrs_score":41,
                "last_online":"1-2-2020",
                "minutes_spent_online":"343"
             },
@@ -86,7 +87,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":13,
+               "madrs_score":13,
                "last_online":"1-2-2020",
                "minutes_spent_online":"228"
             },
@@ -110,7 +111,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":53,
+               "madrs_score":53,
                "last_online":"1-2-2020",
                "minutes_spent_online":"332"
             },
@@ -134,7 +135,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":36,
+               "madrs_score":36,
                "last_online":"1-2-2020",
                "minutes_spent_online":"368"
             },
@@ -158,7 +159,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":53,
+               "madrs_score":53,
                "last_online":"1-2-2020",
                "minutes_spent_online":"256"
             },
@@ -182,7 +183,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":30,
+               "madrs_score":30,
                "last_online":"1-2-2020",
                "minutes_spent_online":"425"
             },
@@ -206,7 +207,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":45,
+               "madrs_score":45,
                "last_online":"1-2-2020",
                "minutes_spent_online":"240"
             },
@@ -230,7 +231,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":58,
+               "madrs_score":58,
                "last_online":"1-2-2020",
                "minutes_spent_online":"117"
             },
@@ -254,7 +255,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":25,
+               "madrs_score":25,
                "last_online":"1-2-2020",
                "minutes_spent_online":"219"
             },
@@ -278,7 +279,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":38,
+               "madrs_score":38,
                "last_online":"1-2-2020",
                "minutes_spent_online":"332"
             },
@@ -302,7 +303,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":10,
+               "madrs_score":10,
                "last_online":"1-2-2020",
                "minutes_spent_online":"449"
             },
@@ -326,7 +327,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":38,
+               "madrs_score":38,
                "last_online":"1-2-2020",
                "minutes_spent_online":"426"
             },
@@ -350,7 +351,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":56,
+               "madrs_score":56,
                "last_online":"1-2-2020",
                "minutes_spent_online":"458"
             },
@@ -374,7 +375,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":22,
+               "madrs_score":22,
                "last_online":"1-2-2020",
                "minutes_spent_online":"364"
             }
@@ -410,7 +411,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":4,
+               "madrs_score":4,
                "last_online":"1-3-2020",
                "minutes_spent_online":"288"
             },
@@ -434,7 +435,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":18,
+               "madrs_score":18,
                "last_online":"1-3-2020",
                "minutes_spent_online":"205"
             },
@@ -458,7 +459,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":56,
+               "madrs_score":56,
                "last_online":"1-3-2020",
                "minutes_spent_online":"389"
             },
@@ -482,7 +483,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":4,
+               "madrs_score":4,
                "last_online":"1-3-2020",
                "minutes_spent_online":"143"
             },
@@ -506,7 +507,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":54,
+               "madrs_score":54,
                "last_online":"1-3-2020",
                "minutes_spent_online":"305"
             },
@@ -530,7 +531,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":3,
+               "madrs_score":3,
                "last_online":"1-3-2020",
                "minutes_spent_online":"262"
             },
@@ -554,7 +555,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":28,
+               "madrs_score":28,
                "last_online":"1-3-2020",
                "minutes_spent_online":"269"
             },
@@ -578,7 +579,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":15,
+               "madrs_score":15,
                "last_online":"1-3-2020",
                "minutes_spent_online":"328"
             },
@@ -602,7 +603,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":10,
+               "madrs_score":10,
                "last_online":"1-3-2020",
                "minutes_spent_online":"219"
             },
@@ -626,7 +627,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":35,
+               "madrs_score":35,
                "last_online":"1-3-2020",
                "minutes_spent_online":"227"
             },
@@ -650,7 +651,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":58,
+               "madrs_score":58,
                "last_online":"1-3-2020",
                "minutes_spent_online":"238"
             },
@@ -674,7 +675,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":21,
+               "madrs_score":21,
                "last_online":"1-3-2020",
                "minutes_spent_online":"108"
             },
@@ -698,7 +699,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":39,
+               "madrs_score":39,
                "last_online":"1-3-2020",
                "minutes_spent_online":"466"
             },
@@ -722,7 +723,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":57,
+               "madrs_score":57,
                "last_online":"1-3-2020",
                "minutes_spent_online":"452"
             },
@@ -746,7 +747,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":24,
+               "madrs_score":24,
                "last_online":"1-3-2020",
                "minutes_spent_online":"373"
             }
@@ -782,7 +783,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":45,
+               "madrs_score":45,
                "last_online":"1-4-2020",
                "minutes_spent_online":"330"
             },
@@ -806,7 +807,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":27,
+               "madrs_score":27,
                "last_online":"1-4-2020",
                "minutes_spent_online":"318"
             },
@@ -830,7 +831,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":24,
+               "madrs_score":24,
                "last_online":"1-4-2020",
                "minutes_spent_online":"265"
             },
@@ -854,7 +855,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":50,
+               "madrs_score":50,
                "last_online":"1-4-2020",
                "minutes_spent_online":"441"
             },
@@ -878,7 +879,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":37,
+               "madrs_score":37,
                "last_online":"1-4-2020",
                "minutes_spent_online":"384"
             },
@@ -902,7 +903,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":31,
+               "madrs_score":31,
                "last_online":"1-4-2020",
                "minutes_spent_online":"420"
             },
@@ -926,7 +927,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":5,
+               "madrs_score":5,
                "last_online":"1-4-2020",
                "minutes_spent_online":"239"
             },
@@ -950,7 +951,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":8,
+               "madrs_score":8,
                "last_online":"1-4-2020",
                "minutes_spent_online":"442"
             },
@@ -974,7 +975,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":9,
+               "madrs_score":9,
                "last_online":"1-4-2020",
                "minutes_spent_online":"352"
             },
@@ -998,7 +999,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":54,
+               "madrs_score":54,
                "last_online":"1-4-2020",
                "minutes_spent_online":"238"
             },
@@ -1022,7 +1023,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":59,
+               "madrs_score":59,
                "last_online":"1-4-2020",
                "minutes_spent_online":"384"
             },
@@ -1046,7 +1047,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":9,
+               "madrs_score":9,
                "last_online":"1-4-2020",
                "minutes_spent_online":"284"
             },
@@ -1070,7 +1071,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":2,
+               "madrs_score":2,
                "last_online":"1-4-2020",
                "minutes_spent_online":"484"
             },
@@ -1094,7 +1095,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":38,
+               "madrs_score":38,
                "last_online":"1-4-2020",
                "minutes_spent_online":"169"
             },
@@ -1118,7 +1119,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":23,
+               "madrs_score":23,
                "last_online":"1-4-2020",
                "minutes_spent_online":"264"
             }
@@ -1154,7 +1155,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":15,
+               "madrs_score":15,
                "last_online":"1-5-2020",
                "minutes_spent_online":"233"
             },
@@ -1178,7 +1179,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":8,
+               "madrs_score":8,
                "last_online":"1-5-2020",
                "minutes_spent_online":"244"
             },
@@ -1202,7 +1203,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":19,
+               "madrs_score":19,
                "last_online":"1-5-2020",
                "minutes_spent_online":"457"
             },
@@ -1226,7 +1227,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":12,
+               "madrs_score":12,
                "last_online":"1-5-2020",
                "minutes_spent_online":"311"
             },
@@ -1250,7 +1251,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":31,
+               "madrs_score":31,
                "last_online":"1-5-2020",
                "minutes_spent_online":"367"
             },
@@ -1274,7 +1275,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":13,
+               "madrs_score":13,
                "last_online":"1-5-2020",
                "minutes_spent_online":"261"
             },
@@ -1298,7 +1299,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":0,
+               "madrs_score":0,
                "last_online":"1-5-2020",
                "minutes_spent_online":"460"
             },
@@ -1322,7 +1323,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":48,
+               "madrs_score":48,
                "last_online":"1-5-2020",
                "minutes_spent_online":"341"
             },
@@ -1346,7 +1347,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":25,
+               "madrs_score":25,
                "last_online":"1-5-2020",
                "minutes_spent_online":"212"
             },
@@ -1370,7 +1371,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":19,
+               "madrs_score":19,
                "last_online":"1-5-2020",
                "minutes_spent_online":"270"
             },
@@ -1394,7 +1395,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":50,
+               "madrs_score":50,
                "last_online":"1-5-2020",
                "minutes_spent_online":"120"
             },
@@ -1418,7 +1419,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":32,
+               "madrs_score":32,
                "last_online":"1-5-2020",
                "minutes_spent_online":"196"
             },
@@ -1442,7 +1443,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":32,
+               "madrs_score":32,
                "last_online":"1-5-2020",
                "minutes_spent_online":"181"
             },
@@ -1466,7 +1467,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":31,
+               "madrs_score":31,
                "last_online":"1-5-2020",
                "minutes_spent_online":"221"
             },
@@ -1490,7 +1491,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":48,
+               "madrs_score":48,
                "last_online":"1-5-2020",
                "minutes_spent_online":"470"
             }
@@ -1526,7 +1527,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":42,
+               "madrs_score":42,
                "last_online":"1-6-2020",
                "minutes_spent_online":"195"
             },
@@ -1550,7 +1551,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":39,
+               "madrs_score":39,
                "last_online":"1-6-2020",
                "minutes_spent_online":"349"
             },
@@ -1574,7 +1575,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":41,
+               "madrs_score":41,
                "last_online":"1-6-2020",
                "minutes_spent_online":"182"
             },
@@ -1598,7 +1599,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":29,
+               "madrs_score":29,
                "last_online":"1-6-2020",
                "minutes_spent_online":"417"
             },
@@ -1622,7 +1623,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":44,
+               "madrs_score":44,
                "last_online":"1-6-2020",
                "minutes_spent_online":"299"
             },
@@ -1646,7 +1647,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":30,
+               "madrs_score":30,
                "last_online":"1-6-2020",
                "minutes_spent_online":"458"
             },
@@ -1670,7 +1671,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":9,
+               "madrs_score":9,
                "last_online":"1-6-2020",
                "minutes_spent_online":"228"
             },
@@ -1694,7 +1695,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":6,
+               "madrs_score":6,
                "last_online":"1-6-2020",
                "minutes_spent_online":"331"
             },
@@ -1718,7 +1719,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":48,
+               "madrs_score":48,
                "last_online":"1-6-2020",
                "minutes_spent_online":"319"
             },
@@ -1742,7 +1743,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":3,
+               "madrs_score":3,
                "last_online":"1-6-2020",
                "minutes_spent_online":"455"
             },
@@ -1766,7 +1767,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":59,
+               "madrs_score":59,
                "last_online":"1-6-2020",
                "minutes_spent_online":"475"
             },
@@ -1790,7 +1791,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":19,
+               "madrs_score":19,
                "last_online":"1-6-2020",
                "minutes_spent_online":"259"
             },
@@ -1814,7 +1815,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":6,
+               "madrs_score":6,
                "last_online":"1-6-2020",
                "minutes_spent_online":"421"
             },
@@ -1838,7 +1839,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":30,
+               "madrs_score":30,
                "last_online":"1-6-2020",
                "minutes_spent_online":"376"
             },
@@ -1862,7 +1863,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":51,
+               "madrs_score":51,
                "last_online":"1-6-2020",
                "minutes_spent_online":"111"
             }
@@ -1898,7 +1899,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":12,
+               "madrs_score":12,
                "last_online":"1-7-2020",
                "minutes_spent_online":"475"
             },
@@ -1922,7 +1923,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":15,
+               "madrs_score":15,
                "last_online":"1-7-2020",
                "minutes_spent_online":"492"
             },
@@ -1946,7 +1947,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":41,
+               "madrs_score":41,
                "last_online":"1-7-2020",
                "minutes_spent_online":"169"
             },
@@ -1970,7 +1971,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":49,
+               "madrs_score":49,
                "last_online":"1-7-2020",
                "minutes_spent_online":"162"
             },
@@ -1994,7 +1995,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":26,
+               "madrs_score":26,
                "last_online":"1-7-2020",
                "minutes_spent_online":"466"
             },
@@ -2018,7 +2019,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":0,
+               "madrs_score":0,
                "last_online":"1-7-2020",
                "minutes_spent_online":"359"
             },
@@ -2042,7 +2043,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":13,
+               "madrs_score":13,
                "last_online":"1-7-2020",
                "minutes_spent_online":"368"
             },
@@ -2066,7 +2067,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":33,
+               "madrs_score":33,
                "last_online":"1-7-2020",
                "minutes_spent_online":"190"
             },
@@ -2090,7 +2091,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":6,
+               "madrs_score":6,
                "last_online":"1-7-2020",
                "minutes_spent_online":"459"
             },
@@ -2114,7 +2115,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":31,
+               "madrs_score":31,
                "last_online":"1-7-2020",
                "minutes_spent_online":"197"
             },
@@ -2138,7 +2139,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":23,
+               "madrs_score":23,
                "last_online":"1-7-2020",
                "minutes_spent_online":"393"
             },
@@ -2162,7 +2163,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":42,
+               "madrs_score":42,
                "last_online":"1-7-2020",
                "minutes_spent_online":"201"
             },
@@ -2186,7 +2187,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":45,
+               "madrs_score":45,
                "last_online":"1-7-2020",
                "minutes_spent_online":"266"
             },
@@ -2210,7 +2211,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":48,
+               "madrs_score":48,
                "last_online":"1-7-2020",
                "minutes_spent_online":"420"
             },
@@ -2234,7 +2235,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":39,
+               "madrs_score":39,
                "last_online":"1-7-2020",
                "minutes_spent_online":"398"
             }
@@ -2270,7 +2271,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":36,
+               "madrs_score":36,
                "last_online":"1-8-2020",
                "minutes_spent_online":"467"
             },
@@ -2294,7 +2295,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":53,
+               "madrs_score":53,
                "last_online":"1-8-2020",
                "minutes_spent_online":"139"
             },
@@ -2318,7 +2319,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":44,
+               "madrs_score":44,
                "last_online":"1-8-2020",
                "minutes_spent_online":"166"
             },
@@ -2342,7 +2343,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":52,
+               "madrs_score":52,
                "last_online":"1-8-2020",
                "minutes_spent_online":"174"
             },
@@ -2366,7 +2367,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":30,
+               "madrs_score":30,
                "last_online":"1-8-2020",
                "minutes_spent_online":"117"
             },
@@ -2390,7 +2391,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":52,
+               "madrs_score":52,
                "last_online":"1-8-2020",
                "minutes_spent_online":"411"
             },
@@ -2414,7 +2415,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":43,
+               "madrs_score":43,
                "last_online":"1-8-2020",
                "minutes_spent_online":"380"
             },
@@ -2438,7 +2439,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":31,
+               "madrs_score":31,
                "last_online":"1-8-2020",
                "minutes_spent_online":"194"
             },
@@ -2462,7 +2463,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":45,
+               "madrs_score":45,
                "last_online":"1-8-2020",
                "minutes_spent_online":"169"
             },
@@ -2486,7 +2487,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":22,
+               "madrs_score":22,
                "last_online":"1-8-2020",
                "minutes_spent_online":"235"
             },
@@ -2510,7 +2511,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":27,
+               "madrs_score":27,
                "last_online":"1-8-2020",
                "minutes_spent_online":"289"
             },
@@ -2534,7 +2535,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":28,
+               "madrs_score":28,
                "last_online":"1-8-2020",
                "minutes_spent_online":"471"
             },
@@ -2558,7 +2559,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":54,
+               "madrs_score":54,
                "last_online":"1-8-2020",
                "minutes_spent_online":"115"
             },
@@ -2582,7 +2583,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":44,
+               "madrs_score":44,
                "last_online":"1-8-2020",
                "minutes_spent_online":"126"
             },
@@ -2606,7 +2607,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":8,
+               "madrs_score":8,
                "last_online":"1-8-2020",
                "minutes_spent_online":"236"
             }
@@ -2642,7 +2643,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":23,
+               "madrs_score":23,
                "last_online":"1-9-2020",
                "minutes_spent_online":"113"
             },
@@ -2666,7 +2667,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":57,
+               "madrs_score":57,
                "last_online":"1-9-2020",
                "minutes_spent_online":"462"
             },
@@ -2690,7 +2691,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":31,
+               "madrs_score":31,
                "last_online":"1-9-2020",
                "minutes_spent_online":"273"
             },
@@ -2714,7 +2715,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":44,
+               "madrs_score":44,
                "last_online":"1-9-2020",
                "minutes_spent_online":"389"
             },
@@ -2738,7 +2739,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":40,
+               "madrs_score":40,
                "last_online":"1-9-2020",
                "minutes_spent_online":"111"
             },
@@ -2762,7 +2763,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":58,
+               "madrs_score":58,
                "last_online":"1-9-2020",
                "minutes_spent_online":"370"
             },
@@ -2786,7 +2787,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":42,
+               "madrs_score":42,
                "last_online":"1-9-2020",
                "minutes_spent_online":"186"
             },
@@ -2810,7 +2811,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":55,
+               "madrs_score":55,
                "last_online":"1-9-2020",
                "minutes_spent_online":"474"
             },
@@ -2834,7 +2835,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":6,
+               "madrs_score":6,
                "last_online":"1-9-2020",
                "minutes_spent_online":"323"
             },
@@ -2858,7 +2859,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":44,
+               "madrs_score":44,
                "last_online":"1-9-2020",
                "minutes_spent_online":"402"
             },
@@ -2882,7 +2883,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":12,
+               "madrs_score":12,
                "last_online":"1-9-2020",
                "minutes_spent_online":"456"
             },
@@ -2906,7 +2907,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":54,
+               "madrs_score":54,
                "last_online":"1-9-2020",
                "minutes_spent_online":"256"
             },
@@ -2930,7 +2931,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":1,
+               "madrs_score":1,
                "last_online":"1-9-2020",
                "minutes_spent_online":"241"
             },
@@ -2954,7 +2955,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":25,
+               "madrs_score":25,
                "last_online":"1-9-2020",
                "minutes_spent_online":"258"
             },
@@ -2978,7 +2979,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":15,
+               "madrs_score":15,
                "last_online":"1-9-2020",
                "minutes_spent_online":"155"
             }
@@ -3014,7 +3015,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":17,
+               "madrs_score":17,
                "last_online":"1-10-2020",
                "minutes_spent_online":"104"
             },
@@ -3038,7 +3039,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":9,
+               "madrs_score":9,
                "last_online":"1-10-2020",
                "minutes_spent_online":"134"
             },
@@ -3062,7 +3063,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":46,
+               "madrs_score":46,
                "last_online":"1-10-2020",
                "minutes_spent_online":"470"
             },
@@ -3086,7 +3087,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":17,
+               "madrs_score":17,
                "last_online":"1-10-2020",
                "minutes_spent_online":"459"
             },
@@ -3110,7 +3111,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":20,
+               "madrs_score":20,
                "last_online":"1-10-2020",
                "minutes_spent_online":"184"
             },
@@ -3134,7 +3135,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":2,
+               "madrs_score":2,
                "last_online":"1-10-2020",
                "minutes_spent_online":"198"
             },
@@ -3158,7 +3159,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":22,
+               "madrs_score":22,
                "last_online":"1-10-2020",
                "minutes_spent_online":"381"
             },
@@ -3182,7 +3183,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":40,
+               "madrs_score":40,
                "last_online":"1-10-2020",
                "minutes_spent_online":"118"
             },
@@ -3206,7 +3207,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":6,
+               "madrs_score":6,
                "last_online":"1-10-2020",
                "minutes_spent_online":"149"
             },
@@ -3230,7 +3231,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":1,
+               "madrs_score":1,
                "last_online":"1-10-2020",
                "minutes_spent_online":"247"
             },
@@ -3254,7 +3255,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":40,
+               "madrs_score":40,
                "last_online":"1-10-2020",
                "minutes_spent_online":"163"
             },
@@ -3278,7 +3279,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":47,
+               "madrs_score":47,
                "last_online":"1-10-2020",
                "minutes_spent_online":"379"
             },
@@ -3302,7 +3303,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":7,
+               "madrs_score":7,
                "last_online":"1-10-2020",
                "minutes_spent_online":"367"
             },
@@ -3326,7 +3327,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":4,
+               "madrs_score":4,
                "last_online":"1-10-2020",
                "minutes_spent_online":"116"
             },
@@ -3350,7 +3351,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":54,
+               "madrs_score":54,
                "last_online":"1-10-2020",
                "minutes_spent_online":"106"
             }
@@ -3386,7 +3387,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":5,
+               "madrs_score":5,
                "last_online":"1-11-2020",
                "minutes_spent_online":"156"
             },
@@ -3410,7 +3411,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":22,
+               "madrs_score":22,
                "last_online":"1-11-2020",
                "minutes_spent_online":"332"
             },
@@ -3434,7 +3435,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":57,
+               "madrs_score":57,
                "last_online":"1-11-2020",
                "minutes_spent_online":"283"
             },
@@ -3458,7 +3459,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":10,
+               "madrs_score":10,
                "last_online":"1-11-2020",
                "minutes_spent_online":"381"
             },
@@ -3482,7 +3483,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":13,
+               "madrs_score":13,
                "last_online":"1-11-2020",
                "minutes_spent_online":"404"
             },
@@ -3506,7 +3507,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":26,
+               "madrs_score":26,
                "last_online":"1-11-2020",
                "minutes_spent_online":"244"
             },
@@ -3530,7 +3531,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"True",
-               "madris_score":54,
+               "madrs_score":54,
                "last_online":"1-11-2020",
                "minutes_spent_online":"187"
             },
@@ -3554,7 +3555,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":21,
+               "madrs_score":21,
                "last_online":"1-11-2020",
                "minutes_spent_online":"114"
             },
@@ -3578,7 +3579,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":44,
+               "madrs_score":44,
                "last_online":"1-11-2020",
                "minutes_spent_online":"271"
             },
@@ -3602,7 +3603,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":54,
+               "madrs_score":54,
                "last_online":"1-11-2020",
                "minutes_spent_online":"369"
             },
@@ -3626,7 +3627,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":22,
+               "madrs_score":22,
                "last_online":"1-11-2020",
                "minutes_spent_online":"298"
             },
@@ -3650,7 +3651,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":10,
+               "madrs_score":10,
                "last_online":"1-11-2020",
                "minutes_spent_online":"354"
             },
@@ -3674,7 +3675,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":52,
+               "madrs_score":52,
                "last_online":"1-11-2020",
                "minutes_spent_online":"117"
             },
@@ -3698,7 +3699,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":31,
+               "madrs_score":31,
                "last_online":"1-11-2020",
                "minutes_spent_online":"411"
             },
@@ -3722,7 +3723,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"True",
                "message_to_therapist":"True",
-               "madris_score":13,
+               "madrs_score":13,
                "last_online":"1-11-2020",
                "minutes_spent_online":"484"
             }
@@ -3759,7 +3760,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"136"
             },
@@ -3783,7 +3784,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"336"
             },
@@ -3807,7 +3808,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"205"
             },
@@ -3831,7 +3832,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"188"
             },
@@ -3855,7 +3856,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"475"
             },
@@ -3879,7 +3880,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"387"
             },
@@ -3903,7 +3904,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"213"
             },
@@ -3927,7 +3928,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"338"
             },
@@ -3951,7 +3952,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"451"
             },
@@ -3975,7 +3976,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"383"
             },
@@ -3999,7 +4000,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"355"
             },
@@ -4023,7 +4024,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"260"
             },
@@ -4047,7 +4048,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"460"
             },
@@ -4071,7 +4072,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"170"
             },
@@ -4095,7 +4096,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-12-2020",
                "minutes_spent_online":"416"
             }
@@ -4132,7 +4133,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"395"
             },
@@ -4156,7 +4157,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"212"
             },
@@ -4180,7 +4181,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"455"
             },
@@ -4204,7 +4205,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"498"
             },
@@ -4228,7 +4229,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"296"
             },
@@ -4252,7 +4253,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"379"
             },
@@ -4276,7 +4277,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"285"
             },
@@ -4300,7 +4301,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"412"
             },
@@ -4324,7 +4325,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"166"
             },
@@ -4348,7 +4349,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"215"
             },
@@ -4372,7 +4373,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"436"
             },
@@ -4396,7 +4397,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"312"
             },
@@ -4420,7 +4421,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"205"
             },
@@ -4444,7 +4445,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"142"
             },
@@ -4468,7 +4469,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-13-2020",
                "minutes_spent_online":"334"
             }
@@ -4505,7 +4506,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"111"
             },
@@ -4529,7 +4530,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"250"
             },
@@ -4553,7 +4554,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"308"
             },
@@ -4577,7 +4578,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"371"
             },
@@ -4601,7 +4602,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"350"
             },
@@ -4625,7 +4626,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"293"
             },
@@ -4649,7 +4650,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"454"
             },
@@ -4673,7 +4674,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"341"
             },
@@ -4697,7 +4698,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"332"
             },
@@ -4721,7 +4722,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"288"
             },
@@ -4745,7 +4746,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"310"
             },
@@ -4769,7 +4770,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"377"
             },
@@ -4793,7 +4794,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"395"
             },
@@ -4817,7 +4818,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"146"
             },
@@ -4841,7 +4842,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-14-2020",
                "minutes_spent_online":"237"
             }
@@ -4878,7 +4879,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"484"
             },
@@ -4902,7 +4903,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"257"
             },
@@ -4926,7 +4927,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"339"
             },
@@ -4950,7 +4951,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"258"
             },
@@ -4974,7 +4975,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"488"
             },
@@ -4998,7 +4999,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"356"
             },
@@ -5022,7 +5023,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"453"
             },
@@ -5046,7 +5047,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"464"
             },
@@ -5070,7 +5071,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"155"
             },
@@ -5094,7 +5095,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"233"
             },
@@ -5118,7 +5119,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"343"
             },
@@ -5142,7 +5143,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"142"
             },
@@ -5166,7 +5167,7 @@
                "activity_sentiment":"Postive",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"123"
             },
@@ -5190,7 +5191,7 @@
                "activity_sentiment":"Neutral",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"137"
             },
@@ -5214,7 +5215,7 @@
                "activity_sentiment":"Negative",
                "message_from_therapist":"False",
                "message_to_therapist":"False",
-               "madris_score":"N/A",
+               "madrs_score":"N/A",
                "last_online":"1-15-2020",
                "minutes_spent_online":"444"
             }
