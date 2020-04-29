@@ -21,9 +21,9 @@
         patient_data = []
 
         for (var i = 0; i < amount_of_modules; i++) {
-            // console.log(data[i].patient_data[0].madris_score);
+            // console.log(data[i].patient_data[0].madrs_score);
             patient_data.push(data[i].patient_data[patient_id])
-            // d3.select('body').append('p').text("madris_score patient 1 (test):" + madris_score);
+            // d3.select('body').append('p').text("madrs_score patient 1 (test):" + madrs_score);
         }
         var amount_of_patients = data[0].patient_data.length;
         var moduleIDs = [];
@@ -108,7 +108,7 @@
                     return colors.black
                 }
                 else {
-                    madrs_score = patient_data[d-1].madris_score
+                    madrs_score = patient_data[d-1].madrs_score
                     var color_type = calculate_warning_color(madrs_score);
                     return warning_colors[color_type];
                 }
@@ -168,7 +168,7 @@
             // }
             // d3.select('module_1').attr("stroke", colors.blue).data(moduleIDs);
             d3.select('body').append('p').text('Patient Name: ' + patient_data[d].patient_name);
-            d3.select('body').append('p').text('Madrs Score: ' + patient_data[d].madris_score);
+            d3.select('body').append('p').text('Madrs Score: ' + patient_data[d].madrs_score);
             d3.select('body').append('p').text('Activity: ' + patient_data[d].activity);
             d3.select('body').append('p').text('Completed: ' + patient_data[d].module_completion);
 
