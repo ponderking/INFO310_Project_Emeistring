@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en"> <head>
+    <meta charset="utf-8">
+    <title>eMeistring Dashboard Demonstration</title>
+    <script type="text/javascript" src="d3/d3.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        div.bar {
+            display: inline-block;
+            width: 20px;
+            height: 75px; /* We'll override height later */ background-color: teal;
+            margin-right: 2px;
+        }
+        div#myDIV {
+            position:absolute;
+            width:50px;
+            height:25px;
+            background:lightcyan;
+            left:255px;
+            top:50px;
+        }
+
+        #tooltip {
+            position: absolute;
+            width: 200px;
+            height: auto;
+            padding: 10px;
+            background-color: white;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
+        #tooltip.hidden {
+            display: none;
+        }
+
+        #tooltip p {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        #tooltip2 {
+            position: absolute;
+            width: 200px;
+            height: auto;
+            padding: 10px;
+            background-color: white;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
+        #tooltip2.hidden {
+            display: none;
+        }
+
+        #tooltip2 p {
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 20px;
+        }
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @-webkit-keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+            .prev, .next,.text {font-size: 11px}
+        }
+
+        .dlink {
+            cursor: pointer;
+            height: 30px;
+            width: 400px;
+            margin: 0 2px;
+            background-color: hsla(221, 100%, 88%, 0.6);
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .dactive, .dlink:hover {
+            background-color: #717171;
+        }
+
+        .hlink {
+            cursor: pointer;
+            height: 53px;
+            width: 60px;
+            margin: 0 2px;
+            background-color: hsla(221, 100%, 88%, 0.6);
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .hactive, .hlink:hover {
+            background-color: #717171;
+        }
+    </style>
+</head>
+<body>
+
+
+
+<img style="position:fixed; top:0px; left:0px; width:950px; height:680px; border:none;" src="img/checkware.png">
+
+<svg style="position:fixed; top:100px; left:430px; width:500px; height:490px; border:none;" >
+    <g id="back" transform="translate(250, 245)"></g>
+    <g transform="translate(250, 245)">
+        <path id="segments" ></path>
+    </g>
+    <g id="weeks" transform="translate(250, 245)"></g>
+    <g id="pat1" transform="translate(250, 245)"></g>
+    <g id="interaction" transform="translate(250, 245)"></g>
+    <g id="progress" transform="translate(250, 245)"></g>
+
+</svg>
+<div style="position:fixed; top:600px; left:650px; width:200px; height:90px; border:none;">
+    <span class="dot active" onclick="location.href='viz1-1.html';"></span>
+    <span class="dot" onclick="location.href='viz1-2.html';"></span>
+    <span class="dot" onclick="location.href='viz1-3.html';"></span>
+</div>
+
+<div style="position:fixed; top:64px; left:15px; width:400px; height:60px; border:none;">
+    <span class="dlink" onclick="location.href='viz4.html';"></span>
+</div>
+
+<div style="position:fixed; top:0px; left:39px; width:70px; height:90px; border:none;">
+    <span class="hlink" onclick="location.href='viz1-3.html';"></span>
+</div>
+
+<div id="tooltip" class="hidden">
+    <p><strong>Patient Information</strong></p> <p><span id="value">100</span></p>
+</div>
+
+<div id="tooltip2" class="hidden">
+    <p><strong>Weekly Interaction.</strong></p> Total number of messages: <p><span id="value2">100</span></p>
+</div>
+
+
+<!--div id="myDIV" onclick="location.href='viz2.html';"></div-->
+
+<script type="text/javascript">
+
+    // OUR CODE STARTS HERE:
+    // Here we use our own patient data from our model.
+
+    d3.json("http://localhost:8000/data/patient_data.json", function(data) {
+        // //                                              [0-14]          [0-8]             [0-14]
+        //     var pdata=[ "Ingvild Emilia.    Progress:       Week 10.   Module 4.      Messages 6",
+        //             "Arne Anton.        Progress:       Week 12.   Module 6.      Messages 12",
+        //             "Tonje Josefine.    Progress:       Week 7.    Module 1.      Messages 7",
+        //             "Haakon Kåre.       Progress:       Week 4.    Module 2+.      Messages 4",
+        //             "Katrine Hjørdis.   Progress:       Week 3.    Module 0.      Messages 1",
+        //             "Rakel Susann.      Progress:       Week 12.   Module 5.      Messages 5",
+        //             "Kennet Elise.      Progress:       Week 10.   Module 4+.      Messages 8",
+        //             "Gunhild Philip.    Progress:       Week 12.   Module 4+.      Messages 8",
+        //             "Alexandra Pauline. Progress:       Week 6.    Module 5.      Messages 8",
+        //             "Thore Tiril.       Progress:       Week 8.   Module 5+.      Messages 8",
+        //             "Ruben Endre.       Progress:       Week 7.    Module 3+.      Messages 3",
+        //             "Gudbrand Irene.    Progress:       Week 1.   Module 0.      Messages 0"];
+        //
+        // var weekData = [10, 12, 7, 4, 3, 12, 10, 12, 6, 8, 7, 1];   // weeks elapsed...
+        // var progData = [4, 6, 1, 2.5, 0, 5, 4.5, 4.5, 5, 5.5, 3.5, 0];         // number of modules completed
+        // var inrcData = [6, 11.5, 6.5, 3.5, 1.0, 5, 8, 8, 8.0, 8, 3.0, 0];  // Interaction data...
+
+        var pdata = [] // Data for mouse-over label
+        var weekData = [];  // weeks elapsed...
+        var progData = [];  // number of modules completed
+        var inrcData = [];  // Interaction data...
+
+
+        var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: 'orange', very_high: 'red', undetermined: '#7F8389'}
+        // var color =["lightgrey", "lightgreen", "#ff3f00", "lightgreen", "#ff3f00", "lightgreen", "lightgrey", "#ff3f00", "lightgreen", "lightgrey", "lightgreen", "#ff3f00"];
+        // var color2=["#999999"  , "#00dd00"   , "#df3d11", "#00dd00"   , "#df3d11", "#00dd00"   , "#999999"  , "#df3d11", "#00dd00"   , "#999999"  , "#00dd00"   , "#df3d11"];
+        // var logpages=["viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html"];
+
+        treatment_data = data.treatment_program
+        modules_data = data.modules
+        current_week = treatment_data.current_week
+
+        var amount_of_modules = treatment_data.amount_of_modules;
+        var amount_of_patients = treatment_data.amount_of_patients;
+
+
+        // temporary solution
+        for (var i = 0; i < amount_of_patients; i++) {
+            patient_name = modules_data[0].patient_data[i].patient_name
+            module = ""
+            number_of_messages = ""
+            console.log(patient_name)
+            weekData.push(current_week)
+            progData.push(4)
+            inrcData.push(8)
+            pdata.push(patient_name + " Progress:   +      Week" + current_week)
+        }
+
+        // draws background lines of visualization
+        drawBackGroundLines(0.52, 0.524, 12)
+
+        // background circles representing weeks.
+        drawCircles(0, 250, 13)
+
+        // arcs.. progress showing (MADRS) score.. and current week...
+        drawWeekArcs(0.1665, 13)
+
+        // Progress bars..... interaction....
+        drawInrcArcs(0.1665, 0.22, 0.35, 13)
+
+        // Progress bars..... module completion....
+        drawProgressArcs(0.1665, 0.15, 0.35, 14.0/8.0, 13)
+
+
+        function drawBackGroundLines() {
+
+            // lines seperating patient data...
+            var lineGenerator = d3.line()
+                .defined(function(d) {
+                    return d !== null;
+                });
+
+            var points = [];
+
+            for (var i = 1, angle = 0.52; i <= 12; i++, angle += 0.524) {
+
+                var xpos1 = 43.0 * Math.cos(angle);
+                var ypos1 = 43.0 * Math.sin(angle);
+                var xpos2 = 250.0 * Math.cos(angle);
+                var ypos2 = 250.0 * Math.sin(angle);
+                points.push([xpos1, ypos1]);
+                points.push([xpos2, ypos2]);
+                points.push([xpos2+1, ypos2+1]);
+                points.push(null);
+            }
+
+            var pathData = lineGenerator(points);
+
+            // Create a path element and set its d attribute
+            d3.select('#segments')
+                .attr('d', pathData);
+
+        }
+
+        function drawCircles(h, center, distance) {
+            var dataset = [];
+            for (var i = 0; i <= 14; i++) {
+                var newNumber = 44 + distance*i;
+                dataset.push(newNumber);
+            }
+
+            var circles = d3.select('#weeks')
+                .selectAll('path')
+                .data(dataset)
+                .enter()
+                .append("circle");
+
+            circles.attr("cx", function(d, i)
+            { return 0;
+            })
+                .attr("cy", h/2) .attr("r", function(d) {
+                return d; }
+            )
+                .attr("fill", "rgba(128, 128, 128, 0.0)") .attr("stroke", "lightgrey") .attr("stroke-width", "1px");
+        }
+
+
+
+        function drawWeekArcs(aratio, distance) {
+
+            var arcGenerator = d3.arc()
+                .padAngle(.02)
+                .padRadius(100)
+                .cornerRadius(4);
+
+            var week_arcData = []
+            week_arcData.push({startAngle: 0, endAngle: aratio * Math.PI, innerRadius: 43, outerRadius: (44 + distance * weekData[0])})
+            for (var i = 0; i < 12; i++) {
+                week_arcData.push({startAngle: aratio * (i+1) * Math.PI, endAngle: aratio * (i+2) * Math.PI, innerRadius: 43, outerRadius: (44 + distance * weekData[i])})
+            }
+            d3.select('#pat1')
+                .selectAll('path')
+                .data(week_arcData)
+                .enter()
+                .append('path')
+                .attr("fill", function(d, i) {
+                    return warning_colors[calculate_warning_color(modules_data[0].patient_data[i].madrs_score)];
+                })
+                .on("click", function(d, i) {
+                    window.localStorage.setItem('patient_id', i)
+                    window.location = "progress_bar.html";
+                })
+                .on("mouseover", function(d, i) {
+                    d3.select(this)
+                        .attr("fill", "#87ddb7");
+                    var xPosition = window.event.clientX; // 250 + d.outerRadius * Math.cos( Math.PI * i * (360/12) / 180) ;
+                    var yPosition = window.event.clientY; //  245 + d.outerRadius * Math.sin( Math.PI * i * (360/12) / 180) ;
+                    //Update the tooltip position and value
+                    d3.select("#tooltip")
+                        .style("left", xPosition + "px")
+                        .style("top", yPosition + "px")
+                        .select("#value")
+                        .text(pdata[i]);
+                    d3.select("#tooltip")
+                        .classed("hidden", false);
+                })
+                .on("mouseout", function(d, i) {
+                    d3.select(this)
+                        .attr("fill", warning_colors[calculate_warning_color(modules_data[0].patient_data[i].madrs_score)]);
+                    d3.select("#tooltip").classed("hidden", true);
+                })
+                .attr('d', arcGenerator);
+
+        }
+
+
+        function drawInrcArcs(aratio, startbuffer, endBuffer, distance) {
+
+            var arcGenerator = d3.arc()
+                .padAngle(0.2)
+                .padRadius(50)
+                .cornerRadius(4);
+
+            var inrc_arcData = []
+            inrc_arcData.push({startAngle: startbuffer, endAngle: startbuffer + aratio * Math.PI - endBuffer, innerRadius: 43, outerRadius: (44 + distance * inrcData[0])})
+            for (var i = 0; i < 12; i++) {
+                inrc_arcData.push({startAngle: startbuffer + aratio * (i+1) * Math.PI, endAngle: startbuffer + aratio * (i+2) * Math.PI - endBuffer, innerRadius: 43, outerRadius: (44 + distance * inrcData[i])})
+            }
+
+            d3.select('#interaction')
+                .selectAll('path')
+                .data(inrc_arcData)
+                .enter()
+                .append('path')
+                .attr("fill", "grey")
+                .on("click", function(d, i) {
+                    window.location = logpages[i];
+                })
+                .on("mouseover", function(d, i) {
+                    var msg = Math.ceil(inrcData[i]);
+                    if( msg < inrcData[i])
+                        msg = msg + 1;
+
+                    if(inrcData)
+                        d3.select(this)
+                            .attr("fill", "#87ddb7");
+                    var xPosition = window.event.clientX; // 250 + d.outerRadius * Math.cos( Math.PI * i * (360/12) / 180) ;
+                    var yPosition = window.event.clientY; //  245 + d.outerRadius * Math.sin( Math.PI * i * (360/12) / 180) ;
+                    //Update the tooltip position and value
+                    d3.select("#tooltip2")
+                        .style("left", xPosition + "px")
+                        .style("top", yPosition + "px")
+                        .select("#value2")
+                        .text(msg);
+                    d3.select("#tooltip2")
+                        .classed("hidden", false);
+                })
+                .on("mouseout", function(d, i) {
+                    d3.select(this)
+                        .attr("fill", "grey");
+                    d3.select("#tooltip2").classed("hidden", true);
+                })
+                .attr('d', arcGenerator);
+
+        }
+
+
+        function drawProgressArcs(aratio, startbuffer, endBuffer, scaleR, distance) {
+
+            var arcGenerator = d3.arc()
+                .padAngle(0.2)
+                .padRadius(50)
+                .cornerRadius(4);
+
+            var progress_arcData = []
+            progress_arcData.push({startAngle: startbuffer, endAngle: startbuffer + aratio * Math.PI - endBuffer, innerRadius: 43, outerRadius: (44 + scaleR * distance * progData[0])})
+            for (var i = 0; i < 12; i++) {
+                progress_arcData.push({startAngle: startbuffer + aratio * (i+1) * Math.PI, endAngle: startbuffer + aratio * (i+2) * Math.PI - endBuffer, innerRadius: 43, outerRadius: (44 + scaleR * distance * progData[i])})
+            }
+
+            d3.select('#progress')
+                .selectAll('path')
+                .data(progress_arcData)
+                .enter()
+                .append('path')
+                .attr("fill", "black")
+                .attr('d', arcGenerator);
+        }
+
+
+
+        function calculate_warning_color(score) {
+            // Temporary values to favour our data that is randomly generated:
+            // Real ranges should be: 0-6, 7-11, 12-22, 23-29, 30-34 and 35-60 respectively.
+            switch (true) {
+                case score >= 0 && score <= 10:
+                    return "low";
+                case score >= 11 && score <= 20:
+                    return "low_middle";
+                case score >= 21 && score <= 30:
+                    return "middle";
+                case score >= 31 && score <= 40:
+                    return "middle_high";
+                case score >= 41 && score <= 50:
+                    return "high";
+                case score >= 51 && score <= 60:
+                    return "very_high";
+                case score === "N/A":
+                    return "undetermined";
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

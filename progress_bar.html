@@ -41,7 +41,8 @@
     // code currently based on: http://bl.ocks.org/vkuchinov/c43323186765cb14ddd292e71790f0ec
 
         var colors = { green: '#4DC87F', lightGreen: '#D9F0E3', darkGreen: '#3B5C0A', blue: '#0808EC', white: '#FFFFFF', black: '#000000'};
-        var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: '#547A1D', very_high: '#3B5C0A', undetermined: '#7F8389'}
+        var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: 'orange', very_high: 'red', undetermined: '#7F8389'}
+
 
         // var warning_colors = {0-6': '', '7-11': '', '12-22': '', '23-29': '', '30-34': '', '35-60': ''}
 
@@ -183,18 +184,20 @@
         }
 
         function calculate_warning_color(score) {
+            // Temporary values to favour our data that is randomly generated:
+            // Real ranges should be: 0-6, 7-11, 12-22, 23-29, 30-34 and 35-60 respectively.
             switch (true) {
-                case score >= 0 && score <= 6:
+                case score >= 0 && score <= 10:
                     return "low";
-                case score >= 7 && score <= 11:
+                case score >= 11 && score <= 20:
                     return "low_middle";
-                case score >= 12 && score <= 22:
+                case score >= 21 && score <= 30:
                     return "middle";
-                case score >= 23 && score <= 29:
+                case score >= 31 && score <= 40:
                     return "middle_high";
-                case score >= 30 && score <= 34:
+                case score >= 41 && score <= 50:
                     return "high";
-                case score >= 35 && score <= 60:
+                case score >= 51 && score <= 60:
                     return "very_high";
                 case score === "N/A":
                     return "undetermined";
