@@ -10,12 +10,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="Patient" eSuperTypes="#//Person">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Symptoms" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="hasTherapist" lowerBound="1"
-        eType="#//Therapist" containment="true" eOpposite="#//Therapist/hasPatient"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="last_online" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minutes_spent_online" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hasTherapist" lowerBound="1"
+        eType="#//Therapist" containment="true" eOpposite="#//Therapist/hasPatient"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="treatment_program" lowerBound="1"
         eType="#//Treatment_program" eOpposite="#//Treatment_program/patient"/>
   </eClassifiers>
@@ -29,15 +29,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="Treatment_program">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="start_date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="end_date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Modules" lowerBound="1"
-        upperBound="14" eType="#//Module" eOpposite="#//Module/treatment_program"
-        eKeys="#//Module/module_number"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" lowerBound="1"
         eType="#//Status"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="treatment_type" lowerBound="1"
         upperBound="3" eType="#//Treatment_type"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="current_week" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Modules" lowerBound="1"
+        upperBound="14" eType="#//Module" eOpposite="#//Module/treatment_program"
+        eKeys="#//Module/module_number"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="patient" lowerBound="1"
         eType="#//Patient" eOpposite="#//Patient/treatment_program" eKeys="#//Person/email_address"/>
   </eClassifiers>
