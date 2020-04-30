@@ -12,23 +12,90 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="hasTherapist" lowerBound="1"
         eType="#//Therapist" containment="true" eOpposite="#//Therapist/hasPatient"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="total"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="last_online" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minutes_spent_online" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="treatment_program" lowerBound="1"
+        eType="#//Treatment_program" eOpposite="#//Treatment_program/patient"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Therapist" eSuperTypes="#//Person">
     <eStructuralFeatures xsi:type="ecore:EReference" name="hasPatient" upperBound="-1"
         eType="#//Patient" containment="true" eOpposite="#//Patient/hasTherapist"
         eKeys="#//Person/email_address"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number_of_patients" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Treatment">
+  <eClassifiers xsi:type="ecore:EClass" name="Treatment_program">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="start_date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="end_date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="completed" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Modules" lowerBound="1"
+        upperBound="14" eType="#//Module" eOpposite="#//Module/treatment_program"
+        eKeys="#//Module/module_number"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" lowerBound="1"
+        eType="#//Status"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="treatment_type" lowerBound="1"
+        upperBound="3" eType="#//Treatment_type"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="current_week" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patient" lowerBound="1"
+        eType="#//Patient" eOpposite="#//Patient/treatment_program" eKeys="#//Person/email_address"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Module">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="module_number" lowerBound="1"
         upperBound="14" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="date_submitted" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="due_date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="n_messages_to_patient"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="n_messages_to_therapist"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="completion" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="task" lowerBound="1" upperBound="-1"
+        eType="#//Task"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="MADRS_score" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="treatment_program" lowerBound="1"
+        eType="#//Treatment_program" eOpposite="#//Treatment_program/Modules"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activties" upperBound="-1"
+        eType="#//Activity" eOpposite="#//Activity/module"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Activity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activity_type" lowerBound="1"
+        eType="#//Activity_type"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activity_sentiment" lowerBound="1"
+        eType="#//Feeling"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" lowerBound="1"
+        eType="#//Module" eOpposite="#//Module/activties"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Status">
+    <eLiterals name="Active"/>
+    <eLiterals name="Completed"/>
+    <eLiterals name="Dropout"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Treatment_type">
+    <eLiterals name="depression"/>
+    <eLiterals name="panic_disorder"/>
+    <eLiterals name="social_anxiety"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Task">
+    <eLiterals name="reading"/>
+    <eLiterals name="writing"/>
+    <eLiterals name="watching_video"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Activity_type">
+    <eLiterals name="health"/>
+    <eLiterals name="leisure"/>
+    <eLiterals name="family/friends"/>
+    <eLiterals name="education/work"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Feeling">
+    <eLiterals name="positive"/>
+    <eLiterals name="neutral"/>
+    <eLiterals name="negative"/>
   </eClassifiers>
 </ecore:EPackage>
