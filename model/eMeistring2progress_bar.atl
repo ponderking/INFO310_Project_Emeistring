@@ -1,0 +1,7 @@
+-- @path eMeistring=/eMeistring2progress_bar/eMeistring.ecore
+-- @path progress_bar=/eMeistring2progress_bar/progress_bar.ecore
+
+module eMeistring2progress_bar;
+
+create OUT: eMeistring from IN: progress_bar;
+
