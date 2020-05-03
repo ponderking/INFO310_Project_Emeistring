@@ -1,0 +1,172 @@
+
+
+    /* Style the lines by removing the fill and applying a stroke */
+.graph-svg-component {
+    background-color: AliceBlue;
+    position: fixed;
+    left: 310px;
+    top: 350px;
+}
+
+.line {
+    fill: none;
+    stroke: #276490;
+    stroke-width: 3;
+}
+
+.lineAxis {
+    fill: none;
+    stroke: #888888;
+    stroke-width: 1;
+}
+
+.lineAxisPink {
+    fill: none;
+    stroke: #ff6557;
+    stroke-width: 1;
+}
+
+    .lineAxisRed {
+        fill: none;
+        stroke: #FF0000;
+        stroke-width: 1;
+    }
+
+.lineAxisOrange {
+    fill: none;
+    stroke: orange;
+    stroke-width: 1;
+}
+
+/* Style the dots by assigning a fill and stroke */
+.dot {
+    fill: #ffab00;
+    stroke: #fff;
+}
+
+.dotDep {
+    fill: #ff0000;
+    stroke: #fff;
+}
+
+.dotModDep {
+    fill: #ff88bb;
+    stroke: #fff;
+}
+
+.dotSlDep {
+    fill: #ffab00;
+    stroke: #fff;
+}
+
+.dotNoDep {
+    fill: #00ff00;
+    stroke: #fff;
+}
+
+div.bar {
+    display: inline-block;
+    width: 20px;
+    height: 75px; /* We'll override height later */ background-color: teal;
+    margin-right: 2px;
+}
+div#myDIV {
+    position:absolute;
+    width:50px;
+    height:25px;
+    background:lightcyan;
+    left:255px;
+    top:50px;
+}
+
+#tooltip {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+#tooltip.hidden {
+    display: none;
+}
+
+#tooltip p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .prev, .next,.text {font-size: 11px}
+}
+
+    .dlink {
+        cursor: pointer;
+        height: 50px;
+        width: 275px;
+        margin: 0 2px;
+        background-color: hsla(221, 100%, 88%, 0.6);
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .dactive, .dlink:hover {
+        background-color: #717171;
+    }
+
+    .hlink {
+        cursor: pointer;
+        height: 49px;
+        width: 55px;
+        margin: 0 2px;
+        background-color: hsla(221, 100%, 88%, 0.6);
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .hactive, .hlink:hover {
+        background-color: #717171;
+    }
