@@ -1,50 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="eMeistring">
-  <eClassifiers xsi:type="ecore:EClass" name="Person">
+  <eClassifiers xsi:type="ecore:EClass" name="Therapist">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="full_name" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="email_address" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number_of_patients" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assigned_patient" upperBound="-1"
+        eType="#//Patient" eOpposite="#//Patient/assigned_therapist" eKeys="#//Patient/email_address"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="send_message" eType="#//Message"
+        eOpposite="#//Message/to.1"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receive_message" eType="#//Message"
+        eOpposite="#//Message/from.1" eKeys="#//Message/date #//Message/content"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Patient" eSuperTypes="#//Person">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Symptoms" upperBound="-1"
+  <eClassifiers xsi:type="ecore:EClass" name="Patient">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="full_name" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="email_address" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="last_online" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minutes_spent_online" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assigned_therapist" lowerBound="1"
-        eType="#//Therapist" eOpposite="#//Therapist/assigned_patient" eKeys="#//Person/full_name"/>
+        eType="#//Therapist" eOpposite="#//Therapist/assigned_patient" eKeys="#//Patient/full_name"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="treatment_program" lowerBound="1"
         eType="#//Treatment_program" eOpposite="#//Treatment_program/patient"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Therapist" eSuperTypes="#//Person">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="assigned_patient" upperBound="-1"
-        eType="#//Patient" eOpposite="#//Patient/assigned_therapist" eKeys="#//Person/email_address"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number_of_patients" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="send_message" eType="#//Message"
+        eOpposite="#//Message/to" eKeys="#//Message/date #//Message/content"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receive_message" eType="#//Message"
+        eOpposite="#//Message/from" eKeys="#//Message/date #//Message/content"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Treatment_program">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="start_date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="end_date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="current_week" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" lowerBound="1"
         eType="#//Status"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="treatment_type" lowerBound="1"
         upperBound="3" eType="#//Treatment_type"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="current_week" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="Modules" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patient" lowerBound="1"
+        eType="#//Patient" eOpposite="#//Patient/treatment_program" eKeys="#//Patient/email_address"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modules" lowerBound="1"
         upperBound="14" eType="#//Module" eOpposite="#//Module/treatment_program"
         eKeys="#//Module/module_number"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="patient" lowerBound="1"
-        eType="#//Patient" eOpposite="#//Patient/treatment_program" eKeys="#//Person/email_address"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Module">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="module_number" lowerBound="1"
         upperBound="14" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date_submitted" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="due_date" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date_submitted" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="n_messages_to_patient"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="0"/>
@@ -53,14 +61,18 @@
         defaultValueLiteral="0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="completion" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="task" lowerBound="1" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tasks" lowerBound="1" upperBound="-1"
         eType="#//Task"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symptoms" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="MADRS_score" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="treatment_program" lowerBound="1"
-        eType="#//Treatment_program" eOpposite="#//Treatment_program/Modules"/>
+        eType="#//Treatment_program" eOpposite="#//Treatment_program/modules"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activties" upperBound="-1"
         eType="#//Activity" eOpposite="#//Activity/module"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="messages" upperBound="-1"
+        eType="#//Message" eOpposite="#//Message/module"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Activity">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -71,7 +83,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="module" lowerBound="1"
         eType="#//Module" eOpposite="#//Module/activties"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Message"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Message">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="date" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="module" lowerBound="1"
+        eType="#//Module" eOpposite="#//Module/messages" eKeys="#//Module/module_number"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//Patient"
+        eOpposite="#//Patient/receive_message" eKeys="#//Patient/email_address"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//Therapist"
+        eOpposite="#//Therapist/receive_message" eKeys="#//Therapist/email_address"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//Patient"
+        eOpposite="#//Patient/send_message" eKeys="#//Patient/email_address"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//Therapist"
+        eOpposite="#//Therapist/send_message" eKeys="#//Therapist/email_address"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Status">
     <eLiterals name="Active"/>
     <eLiterals name="Completed"/>
