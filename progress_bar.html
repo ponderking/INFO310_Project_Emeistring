@@ -5,32 +5,64 @@
     <script type="text/javascript" src="d3/d3.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <!--    <link rel="stylesheet" href="css/dashboard.css"> -->
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
+<svg style="position:fixed; top:400px; left:1000px; width:702px; height:330px; border:none; visibility:hidden" id="interaction_graph">
+    <rect fill="white" width="540" height="170"></rect>
+    <rect x="30" y="50" fill="lightgrey" stroke-width="2" stroke="black" width="650" height="70"></rect>
+    <g id="startWeek" transform="translate(10, 10)">
+        <text id="startWeekText" transform="rotate(90)" style="text-anchor:end;" x="115" y="-4" fill="black" font-size="11"  font-family="Arial">01.01.2020</text>
+    </g>
+    <g id="endWeek" transform="translate(510, 10)">
+        <text id="endWeekText" transform="rotate(90)" style="text-anchor:end;" x="115" y="-4" fill="black" font-size="11"  font-family="Arial">01.12.2021</text>
+    </g>
+    <g id="thisweek" transform="translate(35, 10)"></g>
+    <g id="modules" transform="translate(35, 30)"></g>
+    <g transform="translate(30, 30)">
+        <path id="week0" ></path>
+        <path id="week1" ></path>
+        <path id="week2" ></path>
+        <path id="week3" ></path>
+        <path id="week4" ></path>
+        <path id="week5" ></path>
+        <path id="week6" ></path>
+        <path id="week7" ></path>
+        <path id="week8" ></path>
+        <path id="week9" ></path>
+        <path id="week10" ></path>
+        <path id="week11" ></path>
+        <path id="week12" ></path>
+        <path id="week13" ></path>
+    </g>
+    <g id="message1" transform="translate(30, 28)"></g>
+    <g id="message2" transform="translate(30, 30)"></g>
+
+</svg>
+
+<div id="tooltip" class="hidden">
+    <p><span id="value">100</span></p>
+</div>
+
+
 <script>
 
-
-    // progress-bar code:
-    // Code partly based on: http://bl.ocks.org/vkuchinov/c43323186765cb14ddd292e71790f0ec
-
-    // I start handling our patient data here:
-
     var colors = { green: '#4DC87F', lightGreen: '#D9F0E3', darkGreen: '#3B5C0A', blue: '#0808EC', white: '#FFFFFF', black: '#000000', teal: "#87ddb7"};
-    var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: 'orange', very_high: 'red', undetermined: '#7F8389'}
+    var warning_colors = {low: '#00A650', low_middle: '#CADB2A', middle: '#FFC20D', middle_high: '#F36523', high: '#ED1B24', very_high: 'red', undetermined: '#7F8389'}
 
+    // We load our patient data in json format here using with a D3 callback function.
     d3.json("http://localhost:8000/data/patient_data.json", function(data) {
+        // We have stored the patient selected at the Circular graph in local memory for now.
+        // Normally we would prefer post/get requests for this, but for now this works fine.
         patient_id = window.localStorage.getItem('patient_id')
 
-        // temporary solution
         var amount_of_modules = data.treatment_program.amount_of_modules
         var current_week = data.treatment_program.current_week
-        module_data = data.modules
+        var module_data = data.modules
         var patient_data = []
 
         for (var i = 0; i < amount_of_modules; i++) {
-            // console.log(data[i].patient_data[0].madrs_score);
             patient_data.push(module_data[i].patient_data[patient_id])
-            // d3.select('body').append('p').text("madrs_score patient 1 (test):" + madrs_score);
         }
 
         var moduleIDs = [];
@@ -38,12 +70,15 @@
             moduleIDs.push(i);
         }
 
-        drawProgressBar(patient_data, moduleIDs, amount_of_modules, current_week)
+        drawProgressBar(patient_data, moduleIDs, amount_of_modules, current_week, module_data)
         });
 
 
-    function drawProgressBar(patient_data, moduleIDs, amount_of_modules, current_week) {
-        var width = 960, height = 50, offset = 48;
+    // Progress-bar code:
+    // On the progress bar the user can select individual modules represented as circles. The last circle acts as a summary of all modules.
+    // Code partly based on: http://bl.ocks.org/vkuchinov/c43323186765cb14ddd292e71790f0ec, but we have performed significant modifications.
+    function drawProgressBar(patient_data, moduleIDs, amount_of_modules, current_week, module_data) {
+        var width = 960, height = 0, offset = 48;
         width += offset * 2;
         height += offset * 2;
         var dimensions = '' + 0 + ' ' + 0 + ' ' + width + ' ' + height;
@@ -97,13 +132,13 @@
             .attr('stroke-width', 6)
             .on("click", function(d){
                 if (d > amount_of_modules) {
-                    display_aggregate_information(patient_data, d)
+                    display_aggregate_information(patient_data, amount_of_modules, current_week, module_data)
                 }
                 else if (d > current_week) {
-                    display_upcoming_information(patient_data, d)
+                    display_upcoming_information(patient_data, d, module_data)
                 }
                 else {
-                    display_module_information(patient_data, d)
+                    display_module_information(patient_data, d, module_data)
                 }
                 d3.select(this)
                     .attr("fill", colors.teal)
@@ -135,57 +170,115 @@
                 }})
             .on("click", function(d){
                 if (d > amount_of_modules) {
-                    display_aggregate_information(patient_data, d)
+                    display_aggregate_information(patient_data, amount_of_modules, current_week, module_data)
                 }
                 else if (d > current_week) {
-                    display_upcoming_information(patient_data, d)
+                    display_upcoming_information(patient_data, d, module_data)
                 }
                 else {
-                    display_module_information(patient_data, d)
-                    // window.location = "progress_bar_single_module.html"
+                    display_module_information(patient_data, d, module_data)
                 }
             });
-
+        display_aggregate_information(patient_data, amount_of_modules, current_week, module_data)
     }
 
-
-        // This function will display visualizations of an individual module for the patient.
+        // This function will display information of an individual module for the patient.
         // It will display when you click on any of the module circles at the top of the page.
-
         function display_module_information(patient_data, d) {
-            // var width = 960, height = 50, offset = 150;
-            // width += offset * 2;
-            // height += offset * 2;
-            // var dimensions = '' + 0 + ' ' + 0 + ' ' + width + ' ' + height;
-            //
-            // var svg = d3.select('body').append('svg')
-            //     .attr('id', 'module_visualization' + d, true)
-            //     .attr('preserveAspectRatio', 'xMinYMin meet')
-            //     .attr('viewBox', dimensions)
-            //     .classed('svg-content', true);
+            // Hide other html elements
+            document.getElementById("interaction_graph").style.visibility = "hidden";
+            document.getElementById("madrs_graph").style.visibility = "hidden";
+            module_text = document.getElementById("single_module_text")
+            if(module_text !== null) {
+                module_text.remove();
+            }
+            all_text = document.getElementById("all_module_text")
+            if(all_text !== null) {
+                all_text.remove();
+            }
+            upcoming_text = document.getElementById("upcoming_module_text")
+            if(upcoming_text !== null) {
+                upcoming_text.style.visibility = "hidden";
 
-
-            d3.select('body').append('p').text('Patient Name: ' + patient_data[d].patient_name);
-            d3.select('body').append('p').text('Madrs Score: ' + patient_data[d].madrs_score);
-            d3.select('body').append('p').text('Activity: ' + patient_data[d].activity);
-            d3.select('body').append('p').text('Completed: ' + patient_data[d].module_completion);
+            }
+            // Just text data for now. Most of this data is static and harder to aggregate or visualize.
+            d3.select('body').append('div').attr("id", "single_module_text");
+            d3.select('#single_module_text').append('h1').text('Module ' + d + " data for " + patient_data[d].patient_name + ":");
+            d3.select('#single_module_text').append('h2').text('Patient Name: ' + patient_data[d].patient_name);
+            d3.select('#single_module_text').append('h2').text('Activity Performed: ' + patient_data[d].activity);
+            d3.select('#single_module_text').append('h2').text('Activity Category: ' + patient_data[d].activity_category);
+            d3.select('#single_module_text').append('h2').text('Activity Sentiment: ' + patient_data[d].activity_sentiment);
+            d3.select('#single_module_text').append('h2').text('Symptoms Experienced: ' + patient_data[d].symptoms);
+            d3.select('#single_module_text').append('h2').text('Tasks Assigned: ' + patient_data[d].tasks);
+            d3.select('#single_module_text').append('h2').text('Madrs Score: ' + patient_data[d].madrs_score);
+            d3.select('#single_module_text').append('h2').text('Completed: ' + patient_data[d].module_completion);
 
         }
 
-        // This function will display visualizations of an aggregate module data for the patient.
+
+        // This function will display visualizations of involving summaries of module data for the patient.
         // It will display when you click the top right circle labeled "All".
+        function display_aggregate_information(patient_data, d, amount_of_modules, current_week, module_data) {
+            // Draw Madrs graph and Interaction graph if they dont exist already.
+            interaction_graph = document.getElementById("interaction_graph");
+            if((window.getComputedStyle(interaction_graph).visibility === "hidden")) {
+                interaction_graph.style.visibility = "visible"
+                draw_interaction_graph(patient_data, d, amount_of_modules, current_week, module_data);
+            }
+            madrs_graph = document.getElementById("madrs_graph");
+            if(madrs_graph === null || window.getComputedStyle(madrs_graph).visibility === "hidden") {
+                draw_madrs_graph(patient_data, d, amount_of_modules);
 
-        function display_aggregate_information(patient_data, d) {
-            console.log("Not Implemented Yet.")
+            }
 
+            module_text = document.getElementById("single_module_text")
+            if(module_text !== null) {
+                module_text.style.visibility = "hidden";
+            }
+            all_text = document.getElementById("all_module_text")
+            if(all_text !== null) {
+                all_text.remove();
+            }
+            upcoming_text = document.getElementById("upcoming_module_text")
+            if(upcoming_text !== null) {
+                upcoming_text.style.visibility = "hidden";
+
+            }
+
+            // Add relevant text to inform
+            d3.select('body').append('div').attr("id", "all_module_text");
+            d3.select('#all_module_text').append('h1').text("Modules Summary for patient : " + patient_data[patient_id].patient_name);
+            d3.select('#all_module_text').append('h2').text("MADRS-score Diagram");
+            d3.select('#all_module_text').append('h2').text("Interaction Diagram").attr("class", "interaction_graph_text");
         }
 
-        function display_upcoming_information(patient_data, d) {
-            d3.select('body').append('p').text('This Module has not started yet.');
+        // Function to inform that the selected Module (Circle) has not taken place yet.
+        function display_upcoming_information(patient_data, d, amount_of_modules) {
+            // Hide other svg elements
+            module_text = document.getElementById("single_module_text")
+            if(module_text !== null) {
+                module_text.style.visibility = "hidden";
+            }
+            all_text = document.getElementById("all_module_text")
+            if(all_text !== null) {
+                all_text.remove();
 
+            }
+            upcoming_text = document.getElementById("upcoming_module_text")
+            if(upcoming_text !== null) {
+                upcoming_text.remove();
+
+            }
+            document.getElementById("interaction_graph").style.visibility = "hidden";
+            document.getElementById("madrs_graph").style.visibility = "hidden";
+
+            d3.select('body').append('div').attr("id", "upcoming_module_text");
+            // d3.select('body').append('h1').text('Patient Name: ' + patient_data[d].patient_name).attr("class", "upcoming_module_text");
+            d3.select('#upcoming_module_text').append('h2').text('This Module has not started yet.').attr("class", "upcoming_module_text");
         }
 
-
+        // This function is used to represent the progress bars circles and line diagram with appropriate colors based
+        // on the severity of their madrs score.
         function calculate_warning_color(score) {
             // Temporary values to favour our data that is randomly generated:
             // Real ranges should be: 0-6, 7-11, 12-22, 23-29, 30-34 and 35-60 respectively.
@@ -207,7 +300,354 @@
             }
         }
 
-        // end of d3.json() callback
+        // end of Progress Bar
+
+</script>
+
+<script>
+    function draw_madrs_graph(patient_data, d, amount_of_modules) {
+
+        // 2. Use the margin convention practice
+        var margin = {top: 50, right: 40, bottom: 50, left: 40}
+            , width = (540*1.3) - margin.left - margin.right // Use the window's width
+            , height = (220*1.5) - margin.top - margin.bottom; // Use the window's height
+
+        // X scale will use the index of our data
+        var xScale = d3.scaleLinear()
+            .domain([0, amount_of_modules]) // input
+            .range([0, width]); // output
+
+        // 6. Y scale will use the randomly generate number
+        var yScale = d3.scaleLinear()
+            .domain([0, 60]) // input
+            .range([height, 0]); // output
+
+        // 7. d3's line generator
+        var line = d3.line()
+            .x(function(d, i) { return xScale(i); }) // set the x values for the line generator
+            .y(function(d) { return yScale(d.y); }) // set the y values for the line generator
+            .curve(d3.curveMonotoneX) // apply smoothing to the line
+
+        var dataset = []
+
+        for (var i = 0; i < amount_of_modules; i++) {
+                score = patient_data[i].madrs_score
+                if (score !== "N/A") {
+                    dataset.push({"x" : i, "y": score});
+                }
+            }
+
+
+        // 1. Add the SVG to the page and employ #2
+        // var width = 960, height = 50, offset = 48;
+        // width += offset * 2;
+        // height += offset * 2;
+        // var dimensions = '' + 0 + ' ' + 0 + ' ' + width + ' ' + height;
+
+        var svg = d3.select("body").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .attr("top", 500)
+            .attr("left", 250)
+            // .attr('preserveAspectRatio', 'xMinYMin meet')
+            // .attr('viewBox', dimensions)
+            .attr("class", "graph-svg-component")
+            .attr("id", "madrs_graph")
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+        svg.selectAll("text")
+            .data(dataset)
+            .enter().append("text") // Uses the enter().append() method
+            .attr("x", function(d, i) { return xScale(i)-5 })
+            .attr("y", function(d) { return yScale(d.y)-5 })
+            .style("font-size", 10)
+            .text(function(d,i){ if(i==0) return ""; else return d.y});
+
+        // 3. Call the x axis in a group tag
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(xScale)); // Create an axis component with d3.axisBottom
+
+
+        // 4. Call the y axis in a group tag
+        svg.append("g")
+            .attr("class", "y axis")
+            .call(d3.axisLeft(yScale)); // Create an axis component with d3.axisLeft
+
+
+        // 9. Append the path, bind the data, and call the line generator
+        svg.append("path")
+            .datum(dataset) // 10. Binds data to the line
+            .attr("class", "line") // Assign a class for styling
+            .attr("d", line); // 11. Calls the line generator
+
+        svg.append("path")
+            .datum([{"y": 7}, {"y": 7}, {"y": 7}, {"y": 7}, {"y": 7}, {"y": 7},
+                {"y": 7}, {"y": 7}, {"y": 7}, {"y": 7}, {"y": 7}, {"y": 7},
+                {"y": 7}, {"y": 7}, {"y": 7}]) // 10. Binds data to the line
+            .attr("class", "lineAxisGreen") // Assign a class for styling
+            .attr("d", line); // 11. Calls the line generator
+
+        svg.append("path")
+            .datum([{"y": 15}, {"y": 15}, {"y": 15}, {"y": 15}, {"y": 15}, {"y": 15},
+                {"y": 15}, {"y": 15}, {"y": 15}, {"y": 15}, {"y": 15}, {"y": 15},
+                {"y": 15}, {"y": 15}, {"y": 15}]) // 10. Binds data to the line
+            .attr("class", "lineAxisDarkGreen") // Assign a class for styling
+            .attr("d", line); // 11. Calls the line generator
+
+
+        svg.append("path")
+            .datum([{"y": 23}, {"y": 23}, {"y": 23}, {"y": 23}, {"y": 23}, {"y": 23},
+                {"y": 23}, {"y": 23}, {"y": 23}, {"y": 23}, {"y": 23}, {"y": 23},
+                {"y": 23}, {"y": 23}, {"y": 23}]) // 10. Binds data to the line
+            .attr("class", "lineAxisOrange") // Assign a class for styling
+            .attr("d", line); // 11. Calls the line generator
+
+        svg.append("path")
+            .datum([{"y": 30}, {"y": 30}, {"y": 30}, {"y": 30}, {"y": 30}, {"y": 30},
+                {"y": 30}, {"y": 30}, {"y": 30}, {"y": 30}, {"y": 30}, {"y": 30},
+                {"y": 30}, {"y": 30}, {"y": 30}]) // 10. Binds data to the line
+            .attr("class", "lineAxisPink") // Assign a class for styling
+            .attr("d", line); // 11. Calls the line generator
+
+
+        svg.append("path")
+            .datum([{"y": 45}, {"y": 45}, {"y": 45}, {"y": 45}, {"y": 45}, {"y": 45},
+                {"y": 45}, {"y": 45}, {"y": 45}, {"y": 45}, {"y": 45}, {"y": 45},
+                {"y": 45}, {"y": 45}, {"y": 45}]) // 10. Binds data to the line
+            .attr("class", "lineAxisRed") // Assign a class for styling
+            .attr("d", line); // 11. Calls the line generator
+
+        svg.append("path")
+            .datum([{"y": 60}, {"y": 60}, {"y": 60}, {"y": 60}, {"y": 60}, {"y": 60},
+                {"y": 60}, {"y": 60}, {"y": 60}, {"y": 60}, {"y": 60}, {"y": 60},
+                {"y": 60}, {"y": 60}, {"y": 60}]) // 10. Binds data to the line
+            .attr("class", "lineAxisRed") // Assign a class for styling
+            .attr("d", line); // 11. Calls the line generator
+
+
+        // 12. Appends a circle for each datapoint
+        svg.selectAll(".dot")
+            .data(dataset)
+            .enter().append("circle") // Uses the enter().append() method
+            .attr("cx", function(d, i) { return xScale(i) })
+            .attr("cy", function(d) { return yScale(d.y) })
+            .attr("r", 5)
+            .attr("fill", function(d) { return warning_colors[calculate_warning_color(d.y)]});
+
+    }
+
+</script>
+<script>
+
+    function draw_interaction_graph(patient_data, amount_of_modules, current_week, module_data) {
+
+        var modules = []
+        var weeks = []
+        var msg1 = []
+        var msg2 = []
+        var totalDays = amount_of_modules * 7
+        var currentDay = 0
+        var currentDate = module_data[current_week-1].module_data.date_ended
+
+        var moduleLabels = []
+        var patient_message_counter = 0
+        var therapist_message_counter = 0
+
+        for (var i = 0; i < amount_of_modules; i++) {
+            var label = "Module " + (i+1) + ", Status: "
+
+
+            var completion = patient_data[i].module_completion
+            var score = patient_data[i].madrs_score
+            var patient_message = patient_data[i].message_to_therapist
+            var therapist_message = patient_data[i].message_from_therapist
+
+            if (completion === true && score !== "N/A") {
+                modules.push(2);
+                weeks.push(1)
+                label += "Finished. Submitted on " + module_data[i].module_data.date_ended
+            }
+            else if (completion === false && score !== "N/A") {
+                modules.push(1);
+                weeks.push(1)
+                label += "Incomplete. Submitted on " + module_data[i].module_data.date_ended
+            }
+            else {
+                currentDay = (i) * 7
+                modules.push(0);
+                weeks.push(0)
+                label += "Upcoming. Due on future date."
+            }
+            if (patient_message === "True" && score !== "N/A") {
+                patient_message_counter += 1.2
+                msg1.push(patient_message_counter);
+            }
+            else {
+                msg1.push(patient_message_counter);
+            }
+            if (therapist_message === "True" && score !== "N/A") {
+                therapist_message_counter += 1.2
+                msg2.push(therapist_message_counter);
+            }
+            else {
+                msg2.push(therapist_message_counter);
+            }
+            moduleLabels.push(label)
+        }
+
+        // var modules = [2, 2, 2, 2, 2, 1, 1, 0];   // modules completed ... 2 for completed, 1 for not submitted
+        // var weeks = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0];   // weeks elapsed...  1 for elapsed
+
+        // var totalDays = 14 * 7;
+        // var currentDay = 77; // any number in between 0 - totalDays
+        // var msg1 = [0, 1, 2, 3.7, 4.5, 5.5, 7.5, 9.8];
+        // var msg2 = [1, 2.5, 4, 6, 7];
+
+        var xRange = 450;
+        var xInit = 30;
+        var yInit = 80;
+        var buffer = 7;
+        var buffer2 = buffer * 2;
+        var posX = xInit + (xRange / totalDays) * currentDay;
+
+        d3.select('#thisweek').append("text")
+            .attr("x", posX - 10)
+            .attr("y", 150)
+            .attr("font-size", 11)
+            .text(currentDate);
+
+
+        d3.select('#thisweek').selectAll("image").data([0])
+            .enter()
+            .append("image")
+            .attr("xlink:href", "img/position.png")
+            .attr("x", posX)
+            .attr("y", 0)
+            .attr("width", "30");
+
+        d3.select('#thisweek').append("line")
+            .attr("x1", posX + 15)
+            .attr("y1", 30)
+            .attr("x2", posX + 15)
+            .attr("y2", 140)
+            .attr("stroke", "black")
+            .attr("stroke-dasharray", 4)
+            .attr("stroke-width", 3);
+
+
+        d3.select('#modules').selectAll("circle").data(modules)
+            .enter()
+            .append("circle")
+            .attr("cx", function (d, i) {
+                return xInit + i * (xRange / 10);
+            })
+            .attr("cy", 40)
+            .attr("r", 8)
+            .attr("stroke", "black")
+            .attr("fill", function (d, i) {
+                if (d == 2)
+                    return "green";
+                else if (d == 1)
+                    return "orange";
+                else return "grey";
+            })
+            .on("mouseover", function (d, i) {
+                //d3.select(this)
+                //.attr("fill", "#933833");
+                var xPosition = window.event.clientX; // 250 + d.outerRadius * Math.cos( Math.PI * i * (360/12) / 180) ;
+                var yPosition = window.event.clientY; //  245 + d.outerRadius * Math.sin( Math.PI * i * (360/12) / 180) ;
+                //Update the tooltip position and value
+                d3.select("#tooltip")
+                    .style("left", xPosition + "px")
+                    .style("top", yPosition + "px")
+                    .select("#value")
+                    .text(moduleLabels[i]);
+                d3.select("#tooltip")
+                    .classed("hidden", false);
+            })
+            .on("mouseout", function (d, i) {
+                /*var c = "green";
+                if(d == 2)
+                    c = "green";
+                else if(d==1)
+                    c = "orange";
+                else c = "grey";
+
+                d3.select(this)
+                    .attr("fill", c);*/
+                d3.select("#tooltip").classed("hidden", true);
+            });
+
+        var lineGenerator = d3.line()
+            .defined(function (d) {
+                return d !== null;
+            });
+
+        for (var i = 0; i < 14; i++) {
+
+            var points = [];
+            xPos = xInit + i * (xRange / 10);
+            var xpos1 = xPos;
+            var ypos1 = yInit;
+            var xpos2 = xpos1 + buffer;
+            var ypos2 = yInit;
+            points.push([xpos1, ypos1]);
+            points.push([xpos2, ypos2]);
+            points.push([xpos2 + buffer, ypos2 - buffer]);
+            points.push([xpos2, ypos2 - buffer2]);
+            points.push([xpos1, ypos2 - buffer2]);
+            points.push([xpos2, ypos2 - buffer]);
+            points.push([xpos1, ypos1]);
+            points.push(null);
+
+            var pathData = lineGenerator(points);
+
+            // Create a path element and set its d attribute
+            var segName = '#week' + i;
+            var wcolor = "green";
+            if (weeks[i] == 0)
+                wcolor = "lightgrey";
+
+            d3.select(segName)
+                .attr('stroke', "black")
+                .attr('fill', wcolor)
+                .attr('d', pathData);
+
+        }
+
+        var xImg1 = 10;
+        var yImg1 = 0;
+
+        d3.select('#message1').selectAll("image").data(msg1)
+            .enter()
+            .append("image")
+            .attr("xlink:href", "img/message4.png")
+            .attr("x", function (d) {
+                return xImg1 + d * (xRange / 14);
+            })
+            .attr("y", yImg1)
+            .attr("width", "20")
+            .attr("height", "20");
+
+
+        var xImg2 = 10;
+        var yImg2 = 90;
+
+        d3.select('#message2').selectAll("image").data(msg2)
+            .enter()
+            .append("image")
+            .attr("xlink:href", "img/message1.png")
+            .attr("x", function (d) {
+                return xImg2 + d * (xRange / 14);
+            })
+            .attr("y", yImg2)
+            .attr("width", "20")
+            .attr("height", "20");
+    }
 
 </script>
 </body>

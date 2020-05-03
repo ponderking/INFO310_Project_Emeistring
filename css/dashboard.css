@@ -4,8 +4,38 @@
 .graph-svg-component {
     background-color: AliceBlue;
     position: fixed;
-    left: 310px;
+    left: 60px;
     top: 350px;
+}
+
+#single_module_text {
+    margin-left: 100px;
+}
+
+#upcoming_module_text {
+    margin-left: 100px;
+}
+
+#all_module_text {
+    margin-left: 100px;
+}
+
+.interaction_graph_text {
+    margin-left: 1200px;
+    margin-top: -30px;
+
+}
+
+#interaction_graph {
+    visibility: visible;
+}
+
+h1 {
+    padding-bottom: 20px;
+}
+
+.bottom_text {
+
 }
 
 .line {
@@ -14,9 +44,27 @@
     stroke-width: 3;
 }
 
+#endWeekText {
+    margin-left: 100px;
+}
+
+
+
 .lineAxis {
     fill: none;
     stroke: #888888;
+    stroke-width: 1;
+}
+
+.lineAxisGreen {
+    fill: none;
+    stroke: #4DC87F;
+    stroke-width: 1;
+}
+
+.lineAxisDarkGreen {
+    fill: none;
+    stroke: #3B5C0A;
     stroke-width: 1;
 }
 
