@@ -14,15 +14,14 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minutes_spent_online" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="hasTherapist" lowerBound="1"
-        eType="#//Therapist" containment="true" eOpposite="#//Therapist/hasPatient"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assigned_therapist" lowerBound="1"
+        eType="#//Therapist" eOpposite="#//Therapist/assigned_patient" eKeys="#//Person/full_name"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="treatment_program" lowerBound="1"
         eType="#//Treatment_program" eOpposite="#//Treatment_program/patient"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Therapist" eSuperTypes="#//Person">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="hasPatient" upperBound="-1"
-        eType="#//Patient" containment="true" eOpposite="#//Patient/hasTherapist"
-        eKeys="#//Person/email_address"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assigned_patient" upperBound="-1"
+        eType="#//Patient" eOpposite="#//Patient/assigned_therapist" eKeys="#//Person/email_address"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number_of_patients" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
@@ -72,6 +71,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="module" lowerBound="1"
         eType="#//Module" eOpposite="#//Module/activties"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Message"/>
   <eClassifiers xsi:type="ecore:EEnum" name="Status">
     <eLiterals name="Active"/>
     <eLiterals name="Completed"/>
@@ -90,8 +90,8 @@
   <eClassifiers xsi:type="ecore:EEnum" name="Activity_type">
     <eLiterals name="health"/>
     <eLiterals name="leisure"/>
-    <eLiterals name="family/friends"/>
-    <eLiterals name="education/work"/>
+    <eLiterals name="family_or_friends" literal="family_or_friends"/>
+    <eLiterals name="education_or_work"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Feeling">
     <eLiterals name="positive"/>
