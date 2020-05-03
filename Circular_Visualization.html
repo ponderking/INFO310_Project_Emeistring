@@ -180,11 +180,7 @@
 
 <script type="text/javascript">
 
-    // OUR CODE STARTS HERE:
-    // Here we use our own patient data from our model.
-
-
-    var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: 'orange', very_high: 'red', undetermined: '#7F8389'}
+    var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: 'orange', very_high: 'red', undetermined: 'red'}
 
 
     // Here we use our own patient data from our model.
@@ -431,7 +427,6 @@
             .attr("fill", "black")
             .attr('d', arcGenerator);
     }
-
 
 
     function calculate_warning_color(score) {
