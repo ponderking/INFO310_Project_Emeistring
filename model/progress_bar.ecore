@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="progress_bar">
-  <eClassifiers xsi:type="ecore:EClass" name="Patient">
+  <eClassifiers xsi:type="ecore:EClass" name="progress_patient">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="email_adress" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="full_name" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="modules" lowerBound="14"
-        upperBound="14" eType="#//Module" eOpposite="#//Module/patient"/>
+        upperBound="14" eType="#//progress_module" eOpposite="#//progress_module/patient"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Module" abstract="true" interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="progress_module" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="module_number" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="MADRS_score" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="activity_sentiment" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="patient" eType="#//Patient"
-        eOpposite="#//Patient/modules" eKeys="#//Patient/email_adress"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patient" eType="#//progress_patient"
+        eOpposite="#//progress_patient/modules" eKeys="#//progress_patient/email_adress"/>
   </eClassifiers>
 </ecore:EPackage>

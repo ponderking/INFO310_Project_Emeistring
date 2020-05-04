@@ -3,5 +3,24 @@
 
 module eMeistring2progress_bar;
 
-create OUT: eMeistring from IN: progress_bar;
+create OUT: progress_bar from IN: eMeistring;
 
+rule Patient { 
+	from
+		s : eMeistring!Patient 
+	to
+		t : progress_bar!Patient (
+			full_name <- s.full_name,
+			email_adress <- s.email_adress
+		)
+}
+
+rule Module {
+	from
+		s : eMeistring!Module
+	to
+		t : progress_bar!Module (
+			module_number <- s.module_number,
+			MADRS_score <- s.MADRS_score
+		)
+}
