@@ -25,14 +25,14 @@
 
 .interaction_graph_text {
     margin-left: 1200px;
-    margin-top: -30px;
+    margin-top: -60px;
     background-color: AliceBlue;
+
 
 }
 
 #interaction_graph {
     visibility: visible;
-
 }
 
 h1 {
@@ -41,6 +41,10 @@ h1 {
 
 .bottom_text {
 
+}
+
+.footer {
+    margin-top: 500px;
 }
 
 .line {

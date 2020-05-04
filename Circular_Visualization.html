@@ -1,3 +1,4 @@
+<!-- Visualization code based on the works of INFO310 Professor Fazle Rabbi-->
 <!DOCTYPE html>
 <html lang="en"> <head>
     <meta charset="utf-8">
@@ -187,7 +188,7 @@ A little buggy for now if you click on multiple dots without refreshing browser.
 
 <script type="text/javascript">
 
-    var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: 'orange', very_high: 'red', undetermined: 'red'}
+    var warning_colors = {low: '#C0EC83', low_middle: '#6BAB18', middle: '#F1CF65', middle_high: 'orange', high: 'red', very_high: 'red', undetermined: '#7F8389'}
 
     // Here we use our own patient data loaded from a json file with D3:
     d3.json("http://localhost:8000/data/patient_data.json", function(data) {
@@ -228,7 +229,9 @@ A little buggy for now if you click on multiple dots without refreshing browser.
             hoverLabel += patient_name + " Progress:         Week: " + current_week + ".     ";
             // Since our datasets says that current week is always 10(which it should not be), we generate random week here for the sake of visualiation.
             // On the progress bar, it current week will always be 10 though. Temporary solution.
+
             weekData.push(randomIntFromInterval(current_week -3, current_week + 3));
+            // weekData.push(current_week);
             // message and module completion counting
             for(var j = 0; j < current_week; j++) {
                 if(modules_data[j].patient_data[i].module_completion === true) {

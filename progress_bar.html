@@ -1,3 +1,5 @@
+<!-- Visualization code for Madrs Line Diagram and Interaction Graph,
+are based on the works of INFO310 Professor Fazle Rabbi-->
 <!DOCTYPE html>
 <html lang="en"> <head>
     <meta charset="utf-8">
@@ -51,8 +53,7 @@
     // general colors.
     var colors = { green: '#4DC87F', lightGreen: '#D9F0E3', darkGreen: '#3B5C0A', blue: '#0808EC', white: '#FFFFFF', black: '#000000', teal: "#87ddb7"};
     // colors used for madrs_score representation.
-    var warning_colors = {low: '#00A650', low_middle: '#CADB2A', middle: '#FFC20D', middle_high: '#F36523', high: '#ED1B24', very_high: 'red', undetermined: '#7F8389'}
-
+    var warning_colors = {low: '#C0EC83', low_middle: '#6BAB18', middle: '#F1CF65', middle_high: 'orange', high: 'red', very_high: 'red', undetermined: '#7F8389'}
 
     patient_id = window.localStorage.getItem('patient_id')
     // We load our patient data in json format here using with a D3 callback function.
@@ -227,15 +228,15 @@
             }
             // Just text data for now. Most of this data is static and harder to aggregate or visualize.
             d3.select('body').append('div').attr("id", "single_module_text");
-            d3.select('#single_module_text').append('h1').text('Module ' + d + " data for " + patient_data[d].patient_name + ":");
-            d3.select('#single_module_text').append('h2').text('Patient Name: ' + patient_data[d].patient_name);
-            d3.select('#single_module_text').append('h2').text('Activity Performed: ' + patient_data[d].activity);
-            d3.select('#single_module_text').append('h2').text('Activity Category: ' + patient_data[d].activity_category);
-            d3.select('#single_module_text').append('h2').text('Activity Sentiment: ' + patient_data[d].activity_sentiment);
-            d3.select('#single_module_text').append('h2').text('Symptoms Experienced: ' + patient_data[d].symptoms);
-            d3.select('#single_module_text').append('h2').text('Tasks Assigned: ' + patient_data[d].tasks);
-            d3.select('#single_module_text').append('h2').text('Madrs Score: ' + patient_data[d].madrs_score);
-            d3.select('#single_module_text').append('h2').text('Completed: ' + patient_data[d].module_completion);
+            d3.select('#single_module_text').append('h1').text('Module ' + d + " data for " + patient_data[d-1].patient_name + ":");
+            d3.select('#single_module_text').append('h2').text('Patient Name: ' + patient_data[d-1].patient_name);
+            d3.select('#single_module_text').append('h2').text('Activity Performed: ' + patient_data[d-1].activity);
+            d3.select('#single_module_text').append('h2').text('Activity Category: ' + patient_data[d-1].activity_category);
+            d3.select('#single_module_text').append('h2').text('Activity Sentiment: ' + patient_data[d-1].activity_sentiment);
+            d3.select('#single_module_text').append('h2').text('Symptoms Experienced: ' + patient_data[d-1].symptoms);
+            d3.select('#single_module_text').append('h2').text('Tasks Assigned: ' + patient_data[d-1].tasks);
+            d3.select('#single_module_text').append('h2').text('Madrs Score: ' + patient_data[d-1].madrs_score);
+            d3.select('#single_module_text').append('h2').text('Completed: ' + patient_data[d-1].module_completion);
 
         }
 
@@ -254,7 +255,6 @@
                 draw_madrs_graph(patient_data, d, amount_of_modules);
 
             }
-
             module_text = document.getElementById("single_module_text")
             if(module_text !== null) {
                 module_text.style.visibility = "hidden";
@@ -268,12 +268,13 @@
                 upcoming_text.style.visibility = "hidden";
 
             }
-
             // Add relevant text to inform
             d3.select('body').append('div').attr("id", "all_module_text");
             d3.select('#all_module_text').append('h1').text("Modules Summary for patient : " + patient_data[patient_id].patient_name);
             d3.select('#all_module_text').append('h2').text("MADRS-score Diagram");
             d3.select('#all_module_text').append('h2').text("Interaction Diagram").attr("class", "interaction_graph_text");
+            d3.select('#all_module_text').append('h2').text("Minutes Patient has Spent Online: "  + patient_data[patient_id].minutes_spent_online).attr("class", "footer");
+            d3.select('#all_module_text').append('h2').text("Patient Last Online: " + patient_data[patient_id].last_online).attr("class", "footer").attr("class", "interaction_graph_text");
         }
 
         // Function to inform that the selected Module (Circle) has not taken place yet.
@@ -301,7 +302,7 @@
             d3.select('#upcoming_module_text').append('h2').text('This Module has not started yet.').attr("class", "upcoming_module_text");
         }
 
-        // This function is used to represent the progress bars circles and line diagram with appropriate colors based
+        // This function is used to represent the progress bar circles and line diagram with appropriate colors based
         // on the severity of their madrs score.
         function calculate_warning_color(score) {
             // Temporary values to favour our data that is randomly generated:
