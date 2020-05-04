@@ -11,7 +11,7 @@ How to run code:
  OR 
 * python -m http.server 8000 (for python 3) 
 
-2. In your browser(tested on Chrome) go the URL localhost:8000 and acces the HTML files from there.
+2. In your browser(tested only on Chrome) go the URL localhost:8000 and acces the HTML files from there.
 
 3. Start with opening the Circular_Visulization.html page as it is the main hub for the other visualizations.
    Here you can also click on the dots below to go back in time (a little buggy at the moment).
@@ -20,3 +20,7 @@ How to run code:
  
 5. Clicking on the circle labeled "All" will bring forward two visualizations, one for madrs_scores and one for patient interactions. Both are based on code from Fazzle Rabbi, but modified and refactored with the ussage of our own generated data,
  
+There might still be some bugs, particuarly when navigating from page to page. In these cases, just refresh the browser and it should be fine. To get back to previous pages, use the back button on your browser.
+
+
+
