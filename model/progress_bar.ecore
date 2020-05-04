@@ -4,8 +4,16 @@
   <eClassifiers xsi:type="ecore:EClass" name="Patient">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="email_adress" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modules" lowerBound="14"
+        upperBound="14" eType="#//Module" eOpposite="#//Module/patient"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MADRS_score" abstract="true" interface="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Module" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="MADRS_score" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="activity_sentiment" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patient" eType="#//Patient"
+        eOpposite="#//Patient/modules" eKeys="#//Patient/email_adress"/>
   </eClassifiers>
 </ecore:EPackage>

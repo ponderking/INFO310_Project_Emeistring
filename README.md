@@ -14,9 +14,9 @@ How to run code:
 2. In your browser(tested on Chrome) go the URL localhost:8000 and acces the HTML files from there.
 
 3. Start with opening the Circular_Visulization.html page as it is the main hub for the other visualizations.
-   Here you can click on the dots below to go back in time.
+   Here you can also click on the dots below to go back in time (a little buggy at the moment).
    
-4. Clicking on an Individual patient will lead to a progress-bar for the modules of the said patient.....
+4. Clicking on an Individual patient will lead to a progress-bar for the modules of the said patient.The user can click on individual modules, or "All" modules from the last circle.
  
-5. Clicking on the circle labeled "All" will bring forward....
+5. Clicking on the circle labeled "All" will bring forward two visualizations, one for madrs_scores and one for patient interactions. Both are based on code from Fazzle Rabbi, but modified and refactored with the ussage of our own generated data,
  
