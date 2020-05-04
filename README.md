@@ -27,4 +27,8 @@ How to run the model transformation:
 - the transformation can be launched with the ATL plugin in eclipse
 - run eMeistring2progress_bar.atl
  
-
+if you need to configurate the run:
+- select eMeistring.ecore as source metamodel
+- select progress_bar.ecore as target metamodel
+- select eMeistring.xmi as source model
+- select progressbar.xmi as target model
