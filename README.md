@@ -25,7 +25,7 @@ There might still be some bugs, particuarly when navigating from page to page. I
 
 How to run the model transformation:
 - the transformation can be launched with the ATL plugin in eclipse
-- run eMeistring2progress_bar.atl
+- run eMeistring2progress_bar.atl as ATL transformation
  
 if you need to configurate the run:
 - select eMeistring.ecore as source metamodel
