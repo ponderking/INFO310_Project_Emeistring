@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
+<!-- HTML Code for the interaction graph. Refactor to D3 generation instead later-->
 <svg style="position:fixed; top:400px; left:1000px; width:702px; height:330px; border:none; visibility:hidden" id="interaction_graph">
     <rect fill="white" width="540" height="170"></rect>
     <rect x="30" y="50" fill="lightgrey" stroke-width="2" stroke="black" width="650" height="70"></rect>
@@ -40,14 +41,16 @@
 
 </svg>
 
+<!-- Label for when the user hovers over a circle in the interaction graph.-->
 <div id="tooltip" class="hidden">
     <p><span id="value">100</span></p>
 </div>
 
 
 <script>
-
+    // general colors.
     var colors = { green: '#4DC87F', lightGreen: '#D9F0E3', darkGreen: '#3B5C0A', blue: '#0808EC', white: '#FFFFFF', black: '#000000', teal: "#87ddb7"};
+    // colors used for madrs_score representation.
     var warning_colors = {low: '#00A650', low_middle: '#CADB2A', middle: '#FFC20D', middle_high: '#F36523', high: '#ED1B24', very_high: 'red', undetermined: '#7F8389'}
 
     // We load our patient data in json format here using with a D3 callback function.
@@ -56,15 +59,18 @@
         // Normally we would prefer post/get requests for this, but for now this works fine.
         patient_id = window.localStorage.getItem('patient_id')
 
+        // Commonly used  parameters for visualization
         var amount_of_modules = data.treatment_program.amount_of_modules
         var current_week = data.treatment_program.current_week
         var module_data = data.modules
         var patient_data = []
 
+        // Based on the patient ID, select the correct patient from data.
+        // Preferably we would only load the relevant patient here at first.
         for (var i = 0; i < amount_of_modules; i++) {
             patient_data.push(module_data[i].patient_data[patient_id])
         }
-
+        // Module ids from out data, used for drawing correct amount of circles in progress bar.
         var moduleIDs = [];
         for (var i = 1; i <= amount_of_modules+1; i++) {
             moduleIDs.push(i);
@@ -78,17 +84,19 @@
     // On the progress bar the user can select individual modules represented as circles. The last circle acts as a summary of all modules.
     // Code partly based on: http://bl.ocks.org/vkuchinov/c43323186765cb14ddd292e71790f0ec, but we have performed significant modifications.
     function drawProgressBar(patient_data, moduleIDs, amount_of_modules, current_week, module_data) {
+        // Size speficitations.
         var width = 960, height = 0, offset = 48;
         width += offset * 2;
         height += offset * 2;
         var dimensions = '' + 0 + ' ' + 0 + ' ' + width + ' ' + height;
-
+        // The main SVG element for progress bar.
         var svg = d3.select('body').append('svg')
             .attr('id', 'scene', true)
             .attr('preserveAspectRatio', 'xMinYMin meet')
             .attr('viewBox', dimensions)
             .classed('svg-content', true);
 
+        // stepwidth depending on amount of modules.
         stepWidth = (width - offset * 2) / (moduleIDs.length - 1),
             currentStep = '0';
 
@@ -96,7 +104,7 @@
             .attr('transform', 'translate(' + offset + ',' + offset + ')')
             .style('pointer-events', 'visible');
 
-
+        // The lines that are between the circles
         var progressBackground = progressBar.append('rect')
             .attr('fill', colors.black)
             .attr('height', 8)
@@ -104,6 +112,8 @@
             .attr('rx', 4)
             .attr('ry', 4);
 
+        // Draw individual circles represening single modules. The last circle represent "All" Modules.
+        // Colors are calculated from madrs-score severity.
         progressBar.selectAll('circle')
             .data(moduleIDs)
             .enter()
@@ -120,9 +130,11 @@
                 }})
             .attr('fill', '#FFFFFF')
             .attr('stroke', function(d) {
+                // Upcoming module, so indicate with black.
                 if(d > amount_of_modules) {
                     return colors.black
                 }
+                // Module has taken place, indicate with color based on madrs_score.
                 else {
                     madrs_score = patient_data[d-1].madrs_score
                     var color_type = calculate_warning_color(madrs_score);
@@ -131,13 +143,17 @@
             })
             .attr('stroke-width', 6)
             .on("click", function(d){
+                // handle different types of navigation by clicking.
                 if (d > amount_of_modules) {
+                    // Last circle is clicked so display Module summary.
                     display_aggregate_information(patient_data, amount_of_modules, current_week, module_data)
                 }
                 else if (d > current_week) {
+                    // An upcoming module is clicked.
                     display_upcoming_information(patient_data, d, module_data)
                 }
                 else {
+                    // An individual module is clicked
                     display_module_information(patient_data, d, module_data)
                 }
                 d3.select(this)
@@ -153,6 +169,8 @@
                 d3.select("#tooltip2").classed("hidden", true);
             });
 
+        // Add text to the progress bar based on the module ID's.
+        //
         progressBar.selectAll('text')
             .data(moduleIDs)
             .enter()
@@ -169,16 +187,21 @@
                     return i + 1;
                 }})
             .on("click", function(d){
+                // handle different types of navigation by clicking.
+                // Last circle is clicked so display Module summary.
                 if (d > amount_of_modules) {
                     display_aggregate_information(patient_data, amount_of_modules, current_week, module_data)
                 }
+                // An upcoming module is clicked.
                 else if (d > current_week) {
                     display_upcoming_information(patient_data, d, module_data)
                 }
+                // An individual module is clicked
                 else {
                     display_module_information(patient_data, d, module_data)
                 }
             });
+        // By default display Module summary.
         display_aggregate_information(patient_data, amount_of_modules, current_week, module_data)
     }
 
@@ -305,6 +328,7 @@
 </script>
 
 <script>
+    // This function draws a Line Graph representing the progress of the patients madrs scores.
     function draw_madrs_graph(patient_data, d, amount_of_modules) {
 
         // 2. Use the margin convention practice
@@ -330,6 +354,7 @@
 
         var dataset = []
 
+        // USe our data to fill a list consisting of all madrs_scores for the patient for the visualization.
         for (var i = 0; i < amount_of_modules; i++) {
                 score = patient_data[i].madrs_score
                 if (score !== "N/A") {
@@ -337,13 +362,11 @@
                 }
             }
 
-
         // 1. Add the SVG to the page and employ #2
         // var width = 960, height = 50, offset = 48;
         // width += offset * 2;
         // height += offset * 2;
         // var dimensions = '' + 0 + ' ' + 0 + ' ' + width + ' ' + height;
-
         var svg = d3.select("body").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
@@ -442,9 +465,12 @@
 
 </script>
 <script>
-
+    // This function draws an interaction graph displaying messages sent from both patients and therapists.
+    //
+    // The dates are not working ideally at the moment.
     function draw_interaction_graph(patient_data, amount_of_modules, current_week, module_data) {
 
+        // Data parameters used for visualization.
         var modules = []
         var weeks = []
         var msg1 = []
@@ -457,56 +483,59 @@
         var patient_message_counter = 0
         var therapist_message_counter = 0
 
+        // Use our patient data.
         for (var i = 0; i < amount_of_modules; i++) {
+            // Label used for mouse-over on circles
             var label = "Module " + (i+1) + ", Status: "
-
-
+            // Did the patient complete the module? How many messages sent from both parties?
+            // Score for now is temporarily used to indicate if a module have taken place yet, since a module with no assigned score has not happened yet.
             var completion = patient_data[i].module_completion
             var score = patient_data[i].madrs_score
             var patient_message = patient_data[i].message_to_therapist
             var therapist_message = patient_data[i].message_from_therapist
-
+            // The patient has completed the module
             if (completion === true && score !== "N/A") {
                 modules.push(2);
                 weeks.push(1)
                 label += "Finished. Submitted on " + module_data[i].module_data.date_ended
             }
+            // The patient did not complete the module
             else if (completion === false && score !== "N/A") {
                 modules.push(1);
                 weeks.push(1)
                 label += "Incomplete. Submitted on " + module_data[i].module_data.date_ended
             }
+            // The module has not taken place yet.
             else {
+                // the current day is of date of the last occuring module.
                 currentDay = (i) * 7
+                // no activity, indicated with grey.
                 modules.push(0);
                 weeks.push(0)
                 label += "Upcoming. Due on future date."
             }
+            // Patient sent a message
             if (patient_message === "True" && score !== "N/A") {
                 patient_message_counter += 1.2
                 msg1.push(patient_message_counter);
             }
+            // Patient did not send a message
             else {
                 msg1.push(patient_message_counter);
             }
+            // Therapist sent a message
             if (therapist_message === "True" && score !== "N/A") {
                 therapist_message_counter += 1.2
                 msg2.push(therapist_message_counter);
             }
+            // Therapist did not send a message
             else {
                 msg2.push(therapist_message_counter);
             }
             moduleLabels.push(label)
         }
 
-        // var modules = [2, 2, 2, 2, 2, 1, 1, 0];   // modules completed ... 2 for completed, 1 for not submitted
-        // var weeks = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0];   // weeks elapsed...  1 for elapsed
-
-        // var totalDays = 14 * 7;
-        // var currentDay = 77; // any number in between 0 - totalDays
-        // var msg1 = [0, 1, 2, 3.7, 4.5, 5.5, 7.5, 9.8];
-        // var msg2 = [1, 2.5, 4, 6, 7];
-
+        // Text and arrow indicating the current date.
         var xRange = 450;
         var xInit = 30;
         var yInit = 80;
@@ -519,7 +548,6 @@
             .attr("y", 150)
             .attr("font-size", 11)
             .text(currentDate);
-
 
         d3.select('#thisweek').selectAll("image").data([0])
             .enter()
@@ -538,7 +566,7 @@
             .attr("stroke-dasharray", 4)
             .attr("stroke-width", 3);
 
-
+        // Circles indicating module completion.
         d3.select('#modules').selectAll("circle").data(modules)
             .enter()
             .append("circle")
@@ -587,7 +615,8 @@
                 return d !== null;
             });
 
-        for (var i = 0; i < 14; i++) {
+        // Indicate if week was completed by patient using green and grey arrows.
+        for (var i = 0; i < amount_of_modules; i++) {
 
             var points = [];
             xPos = xInit + i * (xRange / 10);
@@ -618,7 +647,7 @@
                 .attr('d', pathData);
 
         }
-
+        // Indicate patient messages using image.
         var xImg1 = 10;
         var yImg1 = 0;
 
@@ -633,7 +662,7 @@
             .attr("width", "20")
             .attr("height", "20");
 
-
+        // Indicate therapist messages using image.
         var xImg2 = 10;
         var yImg2 = 90;
 

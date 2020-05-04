@@ -152,6 +152,7 @@
     <g id="progress" transform="translate(250, 245)"></g>
 </svg>
 
+<!-- Clickable dots redirect to the same page, but displaying different weeks. A little buggy for now if you click on the same dot multiple times. -->
 <div style="position:fixed; top:600px; left:650px; width:200px; height:90px; border:none;">
     <span class="dot" id="1" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-3);"></span>
     <span class="dot" id="2" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-2);"></span>
@@ -183,7 +184,7 @@
     var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: 'orange', very_high: 'red', undetermined: 'red'}
 
 
-    // Here we use our own patient data from our model.
+    // Here we use our own patient data loaded from a json file with D3:
     d3.json("http://localhost:8000/data/patient_data.json", function(data) {
         // //                                              [0-14]          [0-8]             [0-14]
         //     var pdata=[ "Ingvild Emilia.    Progress:       Week 10.   Module 4.      Messages 6",
@@ -217,16 +218,17 @@
         modules_data = data.modules
         current_week = treatment_data.current_week
 
+        // Use localStorage to remember who the User choose when clicking on a patient.
         if(window.localStorage.getItem('week')  !== null) {
             current_week = parseInt(window.localStorage.getItem('week'))
             localStorage.removeItem("week")
         }
-        console.log(current_week)
-
         var amount_of_modules = treatment_data.amount_of_modules;
         var amount_of_patients = treatment_data.amount_of_patients;
 
         // temporary solution for data retrieval
+        // This loop fills the graph of necesarry data, including number of messages sent, names,
+        // modules and completed. Label for mouse-over is also created.
         for (var i = 0; i < amount_of_patients; i++) {
             patient_name = modules_data[0].patient_data[i].patient_name
             module = ""
@@ -236,6 +238,8 @@
             inrcData.push(8)
             pdata.push(patient_name + " Progress:   +      Week" + current_week)
         }
+
+        // old code refactored into seperate functions.
 
         // draws background lines of visualization
         drawBackGroundLines(0.52, 0.524, 12)
@@ -253,7 +257,7 @@
         drawProgressArcs(0.1665, 0.15, 0.35, 14.0/8.0, 13, progData)
     });
 
-
+    // This function draws background the lines seperating the different patiens.
     function drawBackGroundLines() {
 
         // lines seperating patient data...
@@ -284,6 +288,7 @@
 
     }
 
+    // This function draws background circles indicating what number of week it is.
     function drawCircles(h, center, distance) {
         var dataset = [];
         for (var i = 0; i <= 14; i++) {
@@ -306,14 +311,17 @@
             .attr("fill", "rgba(128, 128, 128, 0.0)") .attr("stroke", "lightgrey") .attr("stroke-width", "1px");
     }
 
-
+    // This function fills the circle with representation of how many weeks of the Emeistring program the patient have been through.
+    // In our current data all patient are on the same week, even though in reality they probably would be on different weeks from each other.
+    // The Colors representing the different levels of madrs scores, calculated with a function we made below.
     function drawWeekArcs(aratio, distance, weekData, pdata) {
 
         var arcGenerator = d3.arc()
             .padAngle(.02)
             .padRadius(100)
             .cornerRadius(4);
-
+        // Old code refactored into loop. Even though we have 14 patient, we stick with 12 here for now for the Circular visualization,
+        // because adding more patient requires a lot of specific mathematic tweaking to get the arcs and angles correct.
         var week_arcData = []
         week_arcData.push({startAngle: 0, endAngle: aratio * Math.PI, innerRadius: 43, outerRadius: (44 + distance * weekData[0])})
         for (var i = 0; i < 12; i++) {
@@ -354,7 +362,7 @@
 
     }
 
-
+    // This function draws the interaction Arcs, which indicates how many messages has been sent.
     function drawInrcArcs(aratio, startbuffer, endBuffer, distance, inrcData) {
 
         var arcGenerator = d3.arc()
@@ -362,6 +370,8 @@
             .padRadius(50)
             .cornerRadius(4);
 
+        // Old code refactored into loop. Even though we have 14 patient, we stick with 12 here for now for the Circular visualization,
+        // because adding more patient requires a lot of specific mathematic tweaking to get the arcs and angles correct.
         var inrc_arcData = []
         inrc_arcData.push({startAngle: startbuffer, endAngle: startbuffer + aratio * Math.PI - endBuffer, innerRadius: 43, outerRadius: (44 + distance * inrcData[0])})
         for (var i = 0; i < 12; i++) {
@@ -405,7 +415,7 @@
 
     }
 
-
+    // This function draws ARcs representing module completions of patients.
     function drawProgressArcs(aratio, startbuffer, endBuffer, scaleR, distance, progData) {
 
         var arcGenerator = d3.arc()
@@ -413,6 +423,8 @@
             .padRadius(50)
             .cornerRadius(4);
 
+        // Old code refactored into loop. Even though we have 14 patient, we stick with 12 here for now for the Circular visualization,
+        // because adding more patient requires a lot of specific mathematic tweaking to get the arcs and angles correct.
         var progress_arcData = []
         progress_arcData.push({startAngle: startbuffer, endAngle: startbuffer + aratio * Math.PI - endBuffer, innerRadius: 43, outerRadius: (44 + scaleR * distance * progData[0])})
         for (var i = 0; i < 12; i++) {
@@ -428,7 +440,8 @@
             .attr('d', arcGenerator);
     }
 
-
+    // This function is used to represent the progress bars circles and line diagram with appropriate colors based
+    // on the severity of their madrs score.
     function calculate_warning_color(score) {
         // Temporary values to favour our data that is randomly generated:
         // Real ranges should be: 0-6, 7-11, 12-22, 23-29, 30-34 and 35-60 respectively.
