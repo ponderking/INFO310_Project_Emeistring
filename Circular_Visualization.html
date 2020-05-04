@@ -152,11 +152,17 @@
     <g id="progress" transform="translate(250, 245)"></g>
 </svg>
 
-<!-- Clickable dots redirect to the same page, but displaying different weeks. A little buggy for now if you click on the same dot multiple times. -->
+<!-- Clickable dots redirect to the same page, but displaying different weeks.
+A little buggy for now if you click on multiple dots without refreshing browser. -->
+<!-- Refactor later into for-loop -->
 <div style="position:fixed; top:600px; left:650px; width:200px; height:90px; border:none;">
-    <span class="dot" id="1" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-3);"></span>
-    <span class="dot" id="2" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-2);"></span>
-    <span class="dot" id="3" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-1);"></span>
+    <span class="dot" id="8" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-7);"></span>
+    <span class="dot" id="7" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-6);"></span>
+    <span class="dot" id="6" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-5);"></span>
+    <span class="dot" id="5" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-4);"></span>
+    <span class="dot" id="4" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-3);"></span>
+    <span class="dot" id="3" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-2);"></span>
+    <span class="dot" id="2" onclick="location.href='Circular_Visualization.html'; window.localStorage.setItem('week', current_week-1);"></span>
     <span class="dot active" onclick="location.href='Circular_Visualization.html';"></span>
 </div>
 
@@ -183,7 +189,6 @@
 
     var warning_colors = {low: '#C0EC83', low_middle: '#A7E074', middle: '#96CC39', middle_high: '#6BA32D', high: 'orange', very_high: 'red', undetermined: 'red'}
 
-
     // Here we use our own patient data loaded from a json file with D3:
     d3.json("http://localhost:8000/data/patient_data.json", function(data) {
 
@@ -196,11 +201,16 @@
         modules_data = data.modules
         current_week = treatment_data.current_week
 
-        // Use localStorage to remember who the User choose when clicking on a patient.
+
+        // Use localStorage to remember know which week it is for the visualiziation(happens after pressing dot below graph).
         if(window.localStorage.getItem('week')  !== null) {
             current_week = parseInt(window.localStorage.getItem('week'))
+            if(current_week < 0) {
+                current_week = 10
+            }
             localStorage.removeItem("week")
         }
+
         var amount_of_modules = treatment_data.amount_of_modules;
         var amount_of_patients = treatment_data.amount_of_patients;
 
@@ -214,9 +224,13 @@
             completion_counter = 0
             message_counter = 0
             patient_name = modules_data[0].patient_data[i].patient_name
+            // This label will be used when the user hovers over any patient in the visualization.
             hoverLabel += patient_name + " Progress:         Week: " + current_week + ".     ";
-            weekData.push(current_week);
-            for(var j = 0; j < amount_of_modules; j++) {
+            // Since our datasets says that current week is always 10(which it should not be), we generate random week here for the sake of visualiation.
+            // On the progress bar, it current week will always be 10 though. Temporary solution.
+            weekData.push(randomIntFromInterval(current_week -3, current_week + 3));
+            // message and module completion counting
+            for(var j = 0; j < current_week; j++) {
                 if(modules_data[j].patient_data[i].module_completion === true) {
                     completion_counter += 1;
 
@@ -228,10 +242,10 @@
                     message_counter += 1;
                 }
             }
-            console.log(message_counter)
-            // console.log(completion_counter)
             hoverLabel += "Modules: " + completion_counter + ".    Messages:" + message_counter;
+            // Scale down values for the sake of visualization.
             pdata.push(hoverLabel)
+            // Scale down values for the sake of visualization.
             progData.push(completion_counter/2);
             inrcData.push(message_counter/2.4);
         }
@@ -458,6 +472,11 @@
             case score === "N/A":
                 return "undetermined";
         }
+    }
+
+    // temporary function used to generate random current_week for patients.
+    function randomIntFromInterval(min, max) { // min and max included
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
 
 </script>
