@@ -22,5 +22,8 @@ How to run code:
  
 There might still be some bugs, particuarly when navigating from page to page. In these cases, just refresh the browser and it should be fine. To get back to previous pages, use the back button on your browser.
 
-
+How to run the model transformation:
+- the transformation can be launched with the ATL plugin in eclipse
+- run eMeistring2progress_bar.atl
+ 
 
