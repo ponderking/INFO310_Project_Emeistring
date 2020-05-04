@@ -10,24 +10,29 @@
 
 #single_module_text {
     margin-left: 100px;
+    background-color: AliceBlue;
 }
 
 #upcoming_module_text {
     margin-left: 100px;
+    background-color: AliceBlue;
 }
 
 #all_module_text {
     margin-left: 100px;
+    background-color: AliceBlue;
 }
 
 .interaction_graph_text {
     margin-left: 1200px;
     margin-top: -30px;
+    background-color: AliceBlue;
 
 }
 
 #interaction_graph {
     visibility: visible;
+    
 }
 
 h1 {

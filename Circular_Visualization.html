@@ -186,33 +186,11 @@
 
     // Here we use our own patient data loaded from a json file with D3:
     d3.json("http://localhost:8000/data/patient_data.json", function(data) {
-        // //                                              [0-14]          [0-8]             [0-14]
-        //     var pdata=[ "Ingvild Emilia.    Progress:       Week 10.   Module 4.      Messages 6",
-        //             "Arne Anton.        Progress:       Week 12.   Module 6.      Messages 12",
-        //             "Tonje Josefine.    Progress:       Week 7.    Module 1.      Messages 7",
-        //             "Haakon Kåre.       Progress:       Week 4.    Module 2+.      Messages 4",
-        //             "Katrine Hjørdis.   Progress:       Week 3.    Module 0.      Messages 1",
-        //             "Rakel Susann.      Progress:       Week 12.   Module 5.      Messages 5",
-        //             "Kennet Elise.      Progress:       Week 10.   Module 4+.      Messages 8",
-        //             "Gunhild Philip.    Progress:       Week 12.   Module 4+.      Messages 8",
-        //             "Alexandra Pauline. Progress:       Week 6.    Module 5.      Messages 8",
-        //             "Thore Tiril.       Progress:       Week 8.   Module 5+.      Messages 8",
-        //             "Ruben Endre.       Progress:       Week 7.    Module 3+.      Messages 3",
-        //             "Gudbrand Irene.    Progress:       Week 1.   Module 0.      Messages 0"];
-        //
-        // var weekData = [10, 12, 7, 4, 3, 12, 10, 12, 6, 8, 7, 1];   // weeks elapsed...
-        // var progData = [4, 6, 1, 2.5, 0, 5, 4.5, 4.5, 5, 5.5, 3.5, 0];         // number of modules completed
-        // var inrcData = [6, 11.5, 6.5, 3.5, 1.0, 5, 8, 8, 8.0, 8, 3.0, 0];  // Interaction data...
 
         var pdata = [] // Data for mouse-over label
         var weekData = [];  // weeks elapsed...
         var progData = [];  // number of modules completed
         var inrcData = [];  // Interaction data...
-
-
-        // var color =["lightgrey", "lightgreen", "#ff3f00", "lightgreen", "#ff3f00", "lightgreen", "lightgrey", "#ff3f00", "lightgreen", "lightgrey", "lightgreen", "#ff3f00"];
-        // var color2=["#999999"  , "#00dd00"   , "#df3d11", "#00dd00"   , "#df3d11", "#00dd00"   , "#999999"  , "#df3d11", "#00dd00"   , "#999999"  , "#00dd00"   , "#df3d11"];
-        // var logpages=["viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html", "viz3.html"];
 
         treatment_data = data.treatment_program
         modules_data = data.modules
@@ -229,14 +207,33 @@
         // temporary solution for data retrieval
         // This loop fills the graph of necesarry data, including number of messages sent, names,
         // modules and completed. Label for mouse-over is also created.
+        // For the visualization we also need information about the messages from and to patients, as well as their module completion.
+        // This can be seen in the black and grey arcs coming out from each patient segment on the graph.
         for (var i = 0; i < amount_of_patients; i++) {
+            var hoverLabel = "";
+            completion_counter = 0
+            message_counter = 0
             patient_name = modules_data[0].patient_data[i].patient_name
-            module = ""
-            number_of_messages = ""
-            weekData.push(current_week)
-            progData.push(4)
-            inrcData.push(8)
-            pdata.push(patient_name + " Progress:   +      Week" + current_week)
+            hoverLabel += patient_name + " Progress:         Week: " + current_week + ".     ";
+            weekData.push(current_week);
+            for(var j = 0; j < amount_of_modules; j++) {
+                if(modules_data[j].patient_data[i].module_completion === true) {
+                    completion_counter += 1;
+
+                }
+                if(modules_data[j].patient_data[i].message_from_therapist === "True") {
+                    message_counter += 1;
+                }
+                if(modules_data[j].patient_data[i].message_to_therapist === "True") {
+                    message_counter += 1;
+                }
+            }
+            console.log(message_counter)
+            // console.log(completion_counter)
+            hoverLabel += "Modules: " + completion_counter + ".    Messages:" + message_counter;
+            pdata.push(hoverLabel)
+            progData.push(completion_counter/2);
+            inrcData.push(message_counter/2.4);
         }
 
         // old code refactored into seperate functions.

@@ -53,11 +53,12 @@
     // colors used for madrs_score representation.
     var warning_colors = {low: '#00A650', low_middle: '#CADB2A', middle: '#FFC20D', middle_high: '#F36523', high: '#ED1B24', very_high: 'red', undetermined: '#7F8389'}
 
+
+    patient_id = window.localStorage.getItem('patient_id')
     // We load our patient data in json format here using with a D3 callback function.
     d3.json("http://localhost:8000/data/patient_data.json", function(data) {
         // We have stored the patient selected at the Circular graph in local memory for now.
         // Normally we would prefer post/get requests for this, but for now this works fine.
-        patient_id = window.localStorage.getItem('patient_id')
 
         // Commonly used  parameters for visualization
         var amount_of_modules = data.treatment_program.amount_of_modules
